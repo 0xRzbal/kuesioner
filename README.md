@@ -1,73 +1,70 @@
 # Kuesioner QA/QC CBCT
 
-Aplikasi kuesioner satu halaman untuk menilai kesiapan program jaminan mutu (QA/QC) pesawat CBCT 3D di fasilitas radiologi kedokteran gigi. Live di <https://questioners.hasiana.web.id/>.
+Instrumen penelitian 24 butir untuk menilai program QA/QC CBCT di dua fasilitas
+radiologi (RSDK dan RSGM). Aplikasi web statis, tanpa backend sendiri: jawaban
+dikirim ke Google Sheets lewat Apps Script Web App.
 
-## Isi
+Live: https://questioners.hasiana.web.id/
 
-- `index.html` — aplikasi utama. Satu file, CSS + JS inline, data butir tertanam sebagai JSON (`const D={...}`). Tidak ada build step.
-- `sheets-config.js` — jembatan ke Google Apps Script Web App (URL deployment + helper `kirimHasilKeSheets`).
-- `Code.gs` — backend Google Apps Script: tulis jawaban ke Google Sheets, derivasi kolom kode, bangun tab Rekap.
-- `README-INTEGRASI-GOOGLE-SHEETS.md` — panduan langkah demi langkah integrasi Sheets.
-- `headers-hasil-kuesioner.csv` — daftar kolom hasil (55 kolom).
-- `kuesioner-items.json` — data butir mentah (24 butir) untuk rujukan.
+## Struktur repo
 
-## Struktur kuesioner
-
-24 butir dibagi 11 bagian (0, A–K):
-
-| Bagian | Cakupan |
+| Path | Isi |
 |---|---|
-| 0 | Penggunaan mode 3D (CBCT) |
-| A | Tata kelola program QA/QC, SOP, dasar penyusunan |
-| B | Pemeriksaan harian & data commissioning |
-| C | Ketersediaan phantom & jalur pengadaannya |
-| D | Penilaian mutu citra & keluhan klinis |
-| E | Pengukuran akurasi kVp per mode |
-| F | Label kalibrasi pada alat |
-| G | Warm-up / kalibrasi otomatis |
-| H | Penyesuaian parameter eksposi (termasuk protokol anak) |
-| I | Pelaporan hasil tidak sesuai & tindakan korektif |
-| J | Kendala pelaksanaan QA/QC & ketersediaan sarana |
-| K | Kesediaan adopsi rancangan SOP/protokol hasil penelitian |
+| `v2/` | Versi aktif - Svelte 5 + Vite (source + build) |
+| `v2/src/lib/items.json` | 24 butir instrumen (pertanyaan, opsi, kode jawaban) |
+| `v2/src/lib/config.ts` | Konfigurasi tampilan (tujuan penelitian) |
+| `v2/src/lib/sheets.ts` | Pengiriman payload ke Apps Script Web App |
+| `v2/dist/` | Hasil build, dipakai untuk deploy ke nginx |
+| `v1/` | Versi lama single-file HTML (arsip) |
 
-## Alur pengisian
+## Versi aktif (v2)
 
-1. Pilih fasilitas — RSDK (Rumah sakit dr Kariadi) atau RSGM (Rumah sakit gigi & mulut).
-2. Isi identitas responden (nama wajib, jabatan & kontak opsional).
-3. Jawab 24 butir satu per satu. Setiap butir punya slot bukti opsional.
-4. Semua butir wajib terisi. Tombol kirim akan mengarahkan ke butir pertama yang masih kosong.
-5. Kirim → jawaban masuk ke Google Sheets dan tab Rekap ikut diperbarui.
+Alur: pilih fasilitas -> identitas -> isi per butir (satu butir per halaman,
+auto-save localStorage) -> tinjau -> kirim.
 
-Jawaban disimpan otomatis di `localStorage`, jadi kuesioner boleh ditutup lalu dilanjutkan di perangkat yang sama.
+Karakteristik:
 
-## Penyimpanan jawaban
+- Setiap butir wajib terisi. Tombol kirim memeriksa kelengkapan dan
+  mengarahkan ke butir kosong pertama.
+- Butir multi-grup (mis. skala 1-5 plus status pemeriksaan) dianggap lengkap
+  hanya jika semua grup terisi.
+- Jawaban disimpan dua lapis: teks yang dibaca manusia dan kode ternormalisasi
+  (untuk rekap).
+- Tidak ada fitur cetak/PDF dan tidak ada blok "Tentang penelitian" di UI.
 
-Frontend mengirim teks yang terbaca manusia (mis. `Y, rutin`). Backend menyimpan dua lapis:
-
-- kolom teks per butir (apa yang dipilih responden), dan
-- kolom `<kode>_kode` hasil normalisasi lewat parser token awalan (`Y`, `T`, `BDD`, `TB`, `M-1..3`, `PPR`).
-
-Tab Rekap menghitung langsung dari kolom `*_kode` (bukan formula spreadsheet), sehingga tidak pecah pada locale yang memakai pemisah `;`.
-
-## Deploy
+## Build
 
 ```bash
-# webroot statis, tanpa build
-rsync -a index.html sheets-config.js /var/www/questioners/
+cd v2
+npm install
+npm test
+npm run build      # hasil di v2/dist
 ```
 
-nginx menyajikan webroot dengan `Cache-Control: no-cache, must-revalidate`; `sheets-config.js` dimuat dengan query versi (`?v=YYYYMMDD`) agar perubahan URL deployment tidak tertahan cache responden.
+Deploy: salin isi `v2/dist/` ke webroot nginx (`/var/www/questioners/`),
+pertahankan `sheets-config.js` bila memakai build lama.
 
-Backend:
+## Backend Google Sheets
 
-1. Buka Google Sheets → Extensions → Apps Script.
-2. Tempel isi `Code.gs`, isi `SPREADSHEET_ID`.
-3. Deploy → New deployment → Web app (Execute as: Me, Access: Anyone).
-4. Salin URL `/exec` ke `SHEETS_WEB_APP_URL` di `sheets-config.js`.
-5. Verifikasi: `GET` URL tersebut harus membalas stempel `version` dan `kolom`.
+Apps Script Web App (`Code.gs`) menerima POST JSON:
+
+```json
+{
+  "facility": "RSDK",
+  "answers": { "0-07": "Ya, rutin", "A-01": "Ya, tertulis" },
+  "evidence": {},
+  "respondent": { "nama": "...", "jabatan": "...", "kontak": "..." },
+  "status": "Terkirim"
+}
+```
+
+- Baris ditulis ke tab `Hasil_RSDK` atau `Hasil_RSGM`, 55 kolom
+  (teks + `<kode>_kode`).
+- `buildRekap()` menghitung ulang tab `Rekap` setelah setiap submit.
+- `doGet` mengembalikan status endpoint dan skema versi.
 
 ## Catatan operasional
 
-- Setiap perubahan `Code.gs` butuh **New deployment** (bukan hanya New version) agar URL baru terbit dan tidak tertahan deployment lama.
-- Tab hasil lama dengan jumlah kolom berbeda dinormalkan otomatis (`normalizeColumns`), tetapi baris uji dari skema lama perlu dihapus manual.
-- `resetSheets()` mengosongkan data dan membangun ulang Rekap; tiap tab diproses dalam `try/catch` terpisah supaya satu kegagalan tidak membatalkan yang lain.
+- Jangan mengandalkan format nomor lokal untuk rumus spreadsheet; rekap
+  dihitung sebagai nilai di Apps Script.
+- Cache dikendalikan lewat header nginx `no-cache` dan query `?v=` pada aset.

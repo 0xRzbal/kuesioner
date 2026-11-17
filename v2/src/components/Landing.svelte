@@ -1,0 +1,45 @@
+<script lang="ts">
+  import { CONFIG } from '../lib/config';
+  import { D } from '../lib/engine';
+  import { state } from '../lib/store';
+  export let onShowAll: () => void;
+  function pick(f: string) { $state.fac = f; }
+</script>
+
+<div class="card">
+  <span class="chip">Kuesioner Penelitian</span>
+  <h1>{D.judul}</h1>
+  <p class="lead">{CONFIG.tujuan}</p>
+
+  <div class="note">
+    <b>Petunjuk pengisian.</b> Kuesioner terdiri dari 24 butir terpilih dalam 12 bagian, dijawab satu
+    per satu; estimasi waktu 10–20 menit. Ke-24 butir dipilih dari bank instrumen penelitian dan
+    kodenya mengikuti dokumen induk, sehingga penomoran tampak tidak berurutan — bukan ada
+    pertanyaan yang hilang. Jawaban tersimpan otomatis di perangkat ini dan dapat dilanjutkan
+    kemudian. Pada sejumlah butir diminta bukti pendukung: bukti ditunjukkan kepada peneliti saat
+    pengisian dan nomor/keterangannya dicatat pada kolom yang disediakan.
+  </div>
+
+  <div class="legend">
+    <b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum Dapat Ditentukan &nbsp;<b>TB</b>Tidak Berlaku &nbsp;<b>★</b>Bukti utama
+  </div>
+
+  <p class="note">
+    <b>Persetujuan.</b> Dengan melanjutkan, Bapak/Ibu menyatakan bersedia mengisi kuesioner ini
+    secara sukarela. Jawaban hanya digunakan untuk keperluan penelitian ini dan identitas
+    responden dirahasiakan dalam pelaporan hasil.
+  </p>
+
+  <div class="gl">Pilih fasilitas tempat pengisian</div>
+  <div class="fac">
+    {#each D.fasilitas as f}
+      <button class="fc" class:on={$state.fac === f} on:click={() => pick(f)}>
+        <b>{f}</b><span>{f === 'RSDK' ? 'Rumah Sakit dr. Kariadi' : 'Rumah Sakit Gigi dan Mulut'}</span>
+      </button>
+    {/each}
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px" class="noprint">
+    <button class="btn" on:click={onShowAll}>Baca semua pertanyaan</button>
+  </div>
+</div>
