@@ -3,10 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kuesioner QA/QC CBCT</title>
+<title>Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom</title>
+<meta name="description" content="Kuesioner penelitian QA/QC CBCT — Alternatif tanpa Uji Phantom. 24 butir terpilih dalam 12 bagian untuk fasilitas RSDK dan RSGM. Jawaban tersimpan otomatis dan hanya digunakan untuk keperluan penelitian.">
+<meta property="og:title" content="Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom">
+<meta property="og:description" content="Kuesioner penelitian: 24 butir, 12 bagian, estimasi 10–20 menit. Silakan baca pengantar dan seluruh pertanyaan sebelum mengisi.">
+<meta property="og:type" content="website">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#3730a3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3ECB%3C/text%3E%3C/svg%3E">
 <style>
-:root{--bg:#f3f5ff;--ink:#1d203c;--mut:#6b7094;--ac:#4f46e5;--ac2:#06b6d4;--acs:#eceaff;--ln:#e2e5f5;--ok:#10b981;--wn:#f59e0b;--sh:0 10px 40px -12px rgba(79,70,229,.25);--ez:cubic-bezier(.34,1.56,.64,1)}
+:root{--bg:#f3f5ff;--ink:#1d203c;--mut:#4d5273;--ac:#4f46e5;--ac2:#06b6d4;--acs:#eceaff;--ln:#d3d7f0;--ok:#10b981;--wn:#f59e0b;--sh:0 10px 40px -12px rgba(79,70,229,.25);--ez:cubic-bezier(.34,1.56,.64,1)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 10% -10%,#e0e7ff,transparent),radial-gradient(800px 500px at 100% 0,#cffafe,transparent),var(--bg);background-attachment:fixed;overflow-x:hidden}
 button{font:inherit;color:inherit;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s var(--ez),box-shadow .2s,background .2s,border-color .2s}
@@ -42,7 +48,7 @@ h1{font-size:clamp(26px,6vw,36px);line-height:1.15;margin:0 0 8px;letter-spacing
 .gl{font-size:13px;font-weight:700;color:var(--mut);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.05em}.gl:first-child{margin-top:0}
 .frow{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;animation:drop .35s var(--ez)}
 @keyframes drop{from{opacity:0;transform:translateY(-8px)}}
-.fl{display:flex;flex-direction:column;gap:4px;flex:1 1 200px;min-width:0}.fl>span{font-size:13px;font-weight:600;color:var(--mut)}
+.fl{display:flex;flex-direction:column;gap:4px;flex:1 1 200px;min-width:0}.fl>span{font-size:14px;font-weight:600;color:var(--mut)}
 .iw{display:flex;align-items:center;gap:8px}.iw i{font-style:normal;color:var(--mut)}
 .in{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fafbff;border:2px solid var(--ln);border-radius:14px;padding:12px 14px;transition:.2s}
 .in:focus{outline:0;border-color:var(--ac);background:#fff;box-shadow:0 0 0 4px rgba(79,70,229,.14)}
@@ -53,7 +59,7 @@ details .in{margin-top:10px}
 .bi{max-width:720px;margin:auto;padding:12px 18px;display:flex;gap:10px;align-items:center}
 .btn{border:2px solid var(--ln);background:#fff;border-radius:14px;padding:13px 20px;font-weight:700}
 .btn:hover{border-color:var(--ac)}.btn.p{background:linear-gradient(135deg,var(--ac),#7c3aed);border:0;color:#fff;box-shadow:0 8px 20px -6px rgba(79,70,229,.6);flex:1}
-.btn.p:hover{box-shadow:0 12px 26px -6px rgba(79,70,229,.7)}.btn.g{border:0;background:none;color:var(--mut)}.btn:disabled{opacity:.5}
+.btn.p:hover{box-shadow:0 12px 26px -6px rgba(79,70,229,.7)}.btn.g{border:0;background:none;color:var(--mut)}.btn:disabled{opacity:.38;filter:saturate(.25);cursor:not-allowed}
 .btn.big{width:100%;padding:16px;font-size:17px;margin-top:20px}
 .fac{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fc{border:2px solid var(--ln);background:#fafbff;border-radius:20px;padding:26px 14px;text-align:center}
@@ -76,11 +82,34 @@ details .in{margin-top:10px}
 .cf{position:fixed;top:-20px;width:10px;height:14px;border-radius:2px;z-index:50;pointer-events:none;animation:fall 2.4s ease-in forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.8}}
 @media(max-width:520px){.fac{grid-template-columns:1fr}.card{padding:22px 18px}.stats .num{font-size:26px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+:focus-visible{outline:3px solid rgba(79,70,229,.55);outline-offset:2px}
+.meta-box{border:1px solid var(--ln);background:#fafbff;border-radius:16px;padding:16px 18px;margin:16px 0;text-align:left}
+.meta-box h2{font-size:16px;margin:0 0 10px}
+.meta-box dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:14.5px;line-height:1.5}
+.meta-box dt{color:var(--mut);font-weight:600}.meta-box dd{margin:0}
+.note{font-size:14.5px;line-height:1.6;color:#33365c;background:#f6f7ff;border-left:4px solid var(--ac);border-radius:0 12px 12px 0;padding:12px 14px;margin:14px 0;text-align:left}
+.legend{font-size:14px;line-height:1.9;text-align:left;margin:10px 0}
+.legend b{background:var(--acs);color:var(--ac);border-radius:7px;padding:1px 8px;margin-right:6px;font-size:13px}
+.sec-q{font-size:14.5px;line-height:1.55;color:#33365c;text-align:left;margin:6px 0 0 18px}
+.consent{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--ln);background:#fafbff;border-radius:14px;padding:14px 16px;margin-top:16px;font-size:15px;line-height:1.5;cursor:pointer}
+.consent input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--ac)}
+.rv-sec{margin-top:16px}.rv-sec h3{font-size:15px;margin:0 0 6px}
+.rv-it{display:flex;gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--ln);background:none;padding:10px 4px;font-size:14.5px;line-height:1.5}
+.rv-it:hover{background:#f6f7ff}.rv-it code{font:700 12px ui-monospace,Menlo,monospace;background:var(--acs);color:var(--ac);border-radius:7px;padding:2px 7px;height:fit-content;flex:none}
+.rv-it .a{display:block;color:#33365c}.rv-it .e{display:block;color:var(--mut);font-size:13.5px}
+.rv-it .none{color:#b45309;font-weight:600}
+.all-it{padding:14px 0;border-bottom:1px solid var(--ln)}.all-it:last-child{border:0}
+.all-it .qq{font-weight:650;font-size:16.5px;line-height:1.45;margin:4px 0 8px}
+.all-it ul{margin:4px 0 8px 20px;padding:0;font-size:14.5px;line-height:1.6;color:#33365c}
+.all-it .ev{font-size:13.5px;color:var(--mut)}
+.all-it .ans{border-bottom:1.5px dotted #9aa0c7;min-height:26px;margin-top:8px}
+@media print{.top,.bar,.ov,.dr,.toast,.noprint{display:none!important}body{background:#fff!important}body:before,body:after{display:none}main{max-width:none!important;padding:0!important}.card{box-shadow:none!important;border:1px solid #bbb!important;break-inside:avoid;margin-bottom:14px}}
+
 
 
 body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
 body:before,body:after{content:"";position:fixed;width:46vmax;height:46vmax;border-radius:50%;filter:blur(70px);opacity:.35;z-index:-1;animation:fl 18s ease-in-out infinite alternate;pointer-events:none}
-body:before{background:#a5b4fc;top:-18vmax;left:-12vmax}body:after{background:#67e8f9;bottom:-20vmax;right:-14vmax;animation-delay:-9s}
+body:before{background:#c3cbf8;opacity:.16;animation:none;top:-18vmax;left:-12vmax}body:after{background:#a5e3f5;opacity:.16;animation:none;bottom:-20vmax;right:-14vmax;animation-delay:-9s}
 @keyframes fl{to{transform:translate(8vmax,6vmax) scale(1.15)}}
 .top{flex:none;position:sticky;top:0;z-index:10}
 #sc{flex:1}
@@ -92,7 +121,7 @@ main{padding:20px 18px 32px}
 .sg{flex:1;height:8px;border:0;border-radius:9px;background:var(--ln);padding:0;overflow:hidden}
 .sg i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .5s}
 .sg.cur{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ac)}
-.hint{margin:-8px 0 14px;color:var(--mut);font-size:13px}
+.hint{margin:-8px 0 14px;color:var(--mut);font-size:14.5px;line-height:1.55}
 .kc{display:none;position:absolute;right:12px;top:50%;margin-top:-11px;width:22px;height:22px;border-radius:7px;background:#fff;border:1px solid var(--ln);font:700 11px/20px ui-monospace,monospace;font-style:normal;text-align:center;color:var(--mut)}
 @media(hover:hover) and (pointer:fine){.kc{display:block}.opt{padding-right:46px}}
 .sc .kc{display:none!important}
@@ -111,7 +140,7 @@ main{padding:20px 18px 32px}
 <div id="sc"><main><div id="st" class="st"></div></main></div>
 <div class="bar" id="bar"><div class="bi" id="bi"></div></div>
 <div class="ov" id="ov"></div><aside class="dr" id="dr" aria-label="Daftar bagian"></aside><div class="toast" id="ts"></div>
-<script src="sheets-config.js?v=20261112"></script>
+<script src="sheets-config.js?v=20261118"></script>
 <script>
 const D={
     "judul": "Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom",
@@ -251,7 +280,7 @@ const D={
             "pertanyaan": "Soal ketiadaan phantom, kendala apa yang paling terasa di fasilitas ini? Urutkan 3 teratas (angka 1–3).",
             "pertanyaan_singkat": "Kendala utama ketiadaan phantom di fasilitas ini (urutkan 3 teratas dengan angka 1–3)",
             "tipe": "isian",
-            "pilihan_jawaban": "…… Tidak termasuk paket pembelian alat …… Anggaran …… Tidak tahu jenis yang sesuai …… Tidak ada kebutuhan yang dirasakan …… Pengadaan sulit …… Lainnya: …………",
+            "pilihan_jawaban": "Urutan 1: ………… • Urutan 2: ………… • Urutan 3: …………",
             "bukti_diminta": "—"
         },
         {
@@ -416,10 +445,21 @@ IT.forEach(it=>{BY[it.kode]=it;let s=SEC.find(x=>x.b===it.bagian);if(!s){s={b:it
 const STEPS=[{t:'fac'},{t:'who'}];SEC.forEach(s=>{STEPS.push({t:'intro',s});s.items.forEach(it=>STEPS.push({t:'q',it,s}))});STEPS.push({t:'review'});
 const BL=/(?:20)?…+/,UNIT=/^\s*(mm|%|buah|kVp|detik|mmAl|mA\/mAs|mAs)(?![A-Za-z])/,EXC=/^(T|TB|BDD|Tidak|Belum|Tanpa)\b/;
 const MULTI=new Set(['A-05','A-07','A-08','C-03','D-24','D-10:1']),KEY='kuesioner_cbct_draft_v3';
+/* ===== KONFIGURASI PENELITI — WAJIB DIISI sebelum tautan dibagikan ke dosen/responden ===== */
+const CONFIG={
+ peneliti:'[Nama peneliti — wajib diisi]',
+ institusi:'[Program studi / fakultas / universitas — wajib diisi]',
+ pembimbing:'[Nama dosen pembimbing — wajib diisi]',
+ kontak:'[Email / kontak peneliti — wajib diisi]',
+ tujuan:'Menilai kesiapan program jaminan mutu dan kendali mutu (QA/QC) pesawat CBCT 3D di fasilitas radiologi kedokteran gigi — meliputi tata kelola program, jadwal pengujian, ketersediaan phantom, mutu citra, dosimetri, kalibrasi, keselamatan, dan protokol klinis — serta merumuskan alternatif pengujian yang sah tanpa uji phantom dan rancangan SOP/protokol QA/QC CBCT yang dapat diterapkan oleh fasilitas.'
+};
+const SKEY='kuesioner_cbct_submitted_v1';
+let SHOWALL=false;
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=id=>document.getElementById(id);
-let ST={i:0,fac:'',who:{nama:'',jabatan:'',kontak:''},s:{},ev:{}},RES=null,ERR='',RESUMED=false;
+let ST={i:0,fac:'',who:{nama:'',jabatan:'',kontak:''},s:{},ev:{},k4agree:false},RES=null,ERR='',RESUMED=false;
 try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.s){ST=Object.assign(ST,d);RESUMED=ST.i>1}}catch(e){}
+try{const sb=JSON.parse(localStorage.getItem(SKEY)||'null');if(sb&&sb.at){RES={ok:true,status:'Terkirim ke Sheets',pesan:'Jawaban dari perangkat ini sudah pernah dikirim pada '+new Date(sb.at).toLocaleString('id-ID')+'. Pengiriman ulang dikunci untuk mencegah data ganda. Gunakan tombol “Isi kuesioner baru” di bawah bila memang perlu mengisi ulang dari awal.'};ST.i=STEPS.length-1}}catch(e){}
 const S=c=>ST.s[c]||(ST.s[c]={});
 
 /* parser butir */
@@ -448,7 +488,11 @@ function fmt(it){const p=P(it),st=S(it.kode);
   if(g.k==='fld')return g.fl.map((f,j)=>fv(f,`f${gi}.${j}`,st)).filter(Boolean).join(', ');
   return(st['g'+gi]||[]).map(i=>{const o=g.opts[i],x=o.f.map((f,j)=>fv(f,`o${gi}.${i}.${j}`,st)).filter(Boolean).join(', ');return o.l+(x?' — '+x:'')}).join('; ')});
  return parts.map((x,gi)=>x&&p.length>1&&p[gi].lab?p[gi].lab+': '+x:x).filter(Boolean).join(' • ')}
-const cnt=s=>s.items.filter(it=>fmt(it)).length,total=()=>SEC.reduce((a,s)=>a+cnt(s),0);
+function complete(it){if(!fmt(it))return false;const p=P(it),st=S(it.kode);
+ return p.every((g,gi)=>{if(g.k==='opt')return(st['g'+gi]||[]).length>0;
+  if(g.k==='fld')return g.fl.some((f,j)=>(st['f'+gi+'.'+j]||'').trim());
+  return(st.a||'').trim().length>0})}
+const cnt=s=>s.items.filter(it=>complete(it)).length,total=()=>SEC.reduce((a,s)=>a+cnt(s),0);
 const auto=it=>{const p=P(it);return p.length===1&&p[0].k==='opt'&&!p[0].multi};
 
 /* render */
@@ -468,63 +512,90 @@ function gh(it,gi){const g=P(it)[gi],st=S(it.kode),c=it.kode;
  return`${lab}<div class="opts${g.sc?' sc':''}">`+g.opts.map((o,i)=>`<button type="button" class="opt${g.multi?' ck':''}${sel.includes(i)?' on':''}" data-a="tog" data-c="${c}" data-g="${gi}" data-i="${i}" aria-pressed="${sel.includes(i)}">${esc(X(o.l))}<em class="kc">${i+1}</em></button>`).join('')+`</div>`+
  sel.map(i=>g.opts[i]&&g.opts[i].f.length?`<div class="frow">${g.opts[i].f.map((f,j)=>fh(c,f,`o${gi}.${i}.${j}`,st,g.opts[i].l)).join('')}</div>`:'').join('')}
 function qh(it){const b=it.bukti_diminta,e=ST.ev[it.kode]||'';
- return`<div class="card"><span class="chip">${EMO[it.bagian]||''} ${esc(it.kode_blanko||it.kode)}</span>${it.subbagian?`<span class="chip s">${esc(it.subbagian)}</span>`:''}<h2 class="q">${esc(it.pertanyaan)}</h2>${hint(it)}${P(it).map((_,i)=>gh(it,i)).join('')}`+
- (b&&b!=='—'?`<details${e?' open':''}><summary>＋ Bukti: ${esc(b)}</summary><input class="in" data-a="ev" data-c="${it.kode}" value="${esc(e)}" placeholder="No. dokumen / keterangan (opsional)"></details>`:'')+`</div>`}
-function view(){const s=STEPS[ST.i];
- if(s.t==='fac')return`<div class="card" style="text-align:center"><div class="hero">👋</div><h1>Halo! Yuk mulai.</h1><p class="lead">Pertanyaan singkat, dijawab satu per satu. Jawaban tersimpan otomatis — boleh ditutup dan dilanjutkan.</p><div class="gl" style="text-align:left">Kamu mengisi untuk…</div><div class="fac">${['RSDK','RSGM'].map(f=>`<button class="fc${ST.fac===f?' on':''}" data-a="fac" data-f="${f}"><b>${f}</b><span>${f==='RSDK'?'Rumah sakit dr Kariadi':'Rumah sakit gigi & mulut'}</span></button>`).join('')}</div></div>`;
- if(s.t==='who')return`<div class="card"><span class="chip">Langkah 2</span><h1>Siapa yang mengisi?</h1><p class="lead">Cukup nama dulu — sisanya opsional.</p><div class="frow" style="margin-top:0"><label class="fl" style="flex-basis:100%"><span>Nama responden *</span><input class="in" id="nm" data-a="meta" data-k="nama" value="${esc(ST.who.nama)}" autocomplete="name"></label><label class="fl"><span>Jabatan / peran</span><input class="in" data-a="meta" data-k="jabatan" value="${esc(ST.who.jabatan)}"></label><label class="fl"><span>No. HP / email</span><input class="in" data-a="meta" data-k="kontak" value="${esc(ST.who.kontak)}"></label></div>${ERR?`<div class="er">${ERR}</div>`:''}</div>`;
- if(s.t==='intro'){const x=s.s;return`<div class="card" style="text-align:center"><div class="big-l" style="margin-inline:auto">${EMO[x.b]||x.b}</div><h1>${esc(x.t)}</h1><p class="lead">Bagian ${SEC.indexOf(x)+1} dari ${SEC.length} · ${x.items.length} pertanyaan · ±${Math.max(1,Math.round(x.items.length/4))} menit</p></div>`}
+ return`<div class="card"><span class="chip">Butir ${esc(it.kode_blanko||it.kode)}</span><span class="chip s">Bagian ${esc(it.bagian)}</span>${it.subbagian?`<span class="chip s">${esc(it.subbagian)}</span>`:''}<h2 class="q">${esc(it.pertanyaan)}</h2>${hint(it)}${P(it).map((_,i)=>gh(it,i)).join('')}`+
+ (b&&b!=='—'?`<details open><summary>Bukti yang diminta: ${esc(b.replace(/^★\s*/,''))}${/^★/.test(b)?' (bukti utama)':''}</summary><p class="hint" style="margin:8px 0">Bukti ditunjukkan kepada peneliti saat pengisian. Tuliskan nomor/judul dokumen atau keterangan buktinya di sini; boleh dikosongkan bila bukti tidak tersedia.</p><input class="in" data-a="ev" data-c="${it.kode}" value="${esc(e)}" placeholder="Nomor dokumen / keterangan bukti (opsional)"></details>`:'')+
+ (it.kode==='K-04'?`<label class="consent"><input type="checkbox" data-a="k4"${ST.k4agree?' checked':''}><span>Saya menyatakan bahwa jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.</span></label>`:'')+
+ (ERR?`<div class="er">${ERR}</div>`:'')+`</div>`}
+function allHtml(){return`<div class="card"><span class="chip">Penelaahan Instrumen</span><h1 style="font-size:clamp(22px,5vw,30px)">${esc(D.judul)}</h1><p class="lead">${esc(CONFIG.tujuan)}</p>
+ <div class="meta-box"><h2>Tentang penelitian ini</h2><dl><dt>Peneliti</dt><dd>${esc(CONFIG.peneliti)}</dd><dt>Institusi</dt><dd>${esc(CONFIG.institusi)}</dd><dt>Pembimbing</dt><dd>${esc(CONFIG.pembimbing)}</dd><dt>Kontak</dt><dd>${esc(CONFIG.kontak)}</dd><dt>Cakupan</dt><dd>24 butir terpilih dari bank instrumen penelitian, dalam 12 bagian (0, A–K), untuk fasilitas RSDK dan RSGM. Kode butir mengikuti dokumen induk, sehingga penomoran tidak berurutan.</dd></dl></div>
+ <div class="legend"><b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum Dapat Ditentukan &nbsp;<b>TB</b>Tidak Berlaku &nbsp;<b>★</b>Bukti utama yang diminta ditunjukkan kepada peneliti</div>
+ <p class="note">Halaman ini menampilkan seluruh pertanyaan apa adanya untuk dibaca dan ditelaah sebelum mengisi. Untuk mencetak atau menyimpan sebagai PDF blanko, gunakan tombol Cetak di bawah.</p></div>`+
+ SEC.map(x=>`<div class="card" style="margin-top:14px"><span class="chip">Bagian ${esc(x.b)}</span><h2 style="font-size:20px;margin:0 0 6px">${esc(x.t)}</h2>`+x.items.map(it=>{const gs=P(it);return`<div class="all-it"><span class="chip">${esc(it.kode_blanko||it.kode)}</span><div class="qq">${esc(it.pertanyaan)}</div>`+(gs.length?`<ul>`+gs.map(g=>{if(g.k==='opt')return g.opts.map(o=>`<li>${esc(X(o.l))}</li>`).join('');if(g.k==='fld')return g.fl.map(f=>`<li>${esc(f.l||g.lab||'Isian')}</li>`).join('');return`<li>Jawaban terbuka</li>`}).join('')+`</ul>`:'')+(it.bukti_diminta&&it.bukti_diminta!=='—'?`<div class="ev">Bukti yang diminta: ${esc(it.bukti_diminta)}</div>`:'')+`<div class="ans"></div></div>`}).join('')+`</div>`).join('')}
+function view(){if(SHOWALL)return allHtml();const s=STEPS[ST.i];
+ if(s.t==='fac')return`<div class="card"><span class="chip">Kuesioner Penelitian</span><h1 style="font-size:clamp(24px,5.4vw,32px)">${esc(D.judul)}</h1><p class="lead">${esc(CONFIG.tujuan)}</p>
+ <div class="meta-box"><h2>Tentang penelitian ini</h2><dl><dt>Peneliti</dt><dd>${esc(CONFIG.peneliti)}</dd><dt>Institusi</dt><dd>${esc(CONFIG.institusi)}</dd><dt>Pembimbing</dt><dd>${esc(CONFIG.pembimbing)}</dd><dt>Kontak</dt><dd>${esc(CONFIG.kontak)}</dd></dl></div>
+ <div class="note"><b>Petunjuk pengisian.</b> Kuesioner terdiri dari 24 butir terpilih dalam 12 bagian, dijawab satu per satu; estimasi waktu 10–20 menit. Ke-24 butir dipilih dari bank instrumen penelitian dan kodenya mengikuti dokumen induk, sehingga penomoran tampak tidak berurutan — bukan ada pertanyaan yang hilang. Jawaban tersimpan otomatis di perangkat ini dan dapat dilanjutkan kemudian. Pada sejumlah butir diminta bukti pendukung: bukti ditunjukkan kepada peneliti saat pengisian dan nomor/keterangannya dicatat pada kolom yang disediakan.</div>
+ <div class="legend"><b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum Dapat Ditentukan &nbsp;<b>TB</b>Tidak Berlaku &nbsp;<b>★</b>Bukti utama</div>
+ <p class="note"><b>Persetujuan.</b> Dengan melanjutkan, Bapak/Ibu menyatakan bersedia mengisi kuesioner ini secara sukarela. Jawaban hanya digunakan untuk keperluan penelitian ini dan identitas responden dirahasiakan dalam pelaporan hasil.</p>
+ <div class="gl" style="text-align:left">Pilih fasilitas tempat pengisian</div><div class="fac">${['RSDK','RSGM'].map(f=>`<button class="fc${ST.fac===f?' on':''}" data-a="fac" data-f="${f}"><b>${f}</b><span>${f==='RSDK'?'Rumah Sakit dr. Kariadi':'Rumah Sakit Gigi dan Mulut'}</span></button>`).join('')}</div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn" data-a="all">Baca semua pertanyaan</button><button class="btn" data-a="printall">Cetak / simpan blanko (PDF)</button></div></div>`;
+ if(s.t==='who')return`<div class="card"><span class="chip">Langkah 2 dari 2</span><h1>Identitas Responden</h1><p class="lead">Nama wajib diisi. Jabatan dan kontak bersifat opsional dan hanya digunakan peneliti untuk klarifikasi jawaban bila diperlukan.</p><div class="frow" style="margin-top:0"><label class="fl" style="flex-basis:100%"><span>Nama responden * (wajib)</span><input class="in" id="nm" data-a="meta" data-k="nama" value="${esc(ST.who.nama)}" autocomplete="name"></label><label class="fl"><span>Jabatan / peran</span><input class="in" data-a="meta" data-k="jabatan" value="${esc(ST.who.jabatan)}"></label><label class="fl"><span>No. HP / email</span><input class="in" data-a="meta" data-k="kontak" value="${esc(ST.who.kontak)}"></label></div>${ERR?`<div class="er">${ERR}</div>`:''}</div>`;
+ if(s.t==='intro'){const x=s.s;return`<div class="card"><span class="chip">Bagian ${esc(x.b)}</span><h1 style="font-size:clamp(23px,5vw,30px)">${esc(x.t)}</h1><p class="lead">Bagian ${SEC.indexOf(x)+1} dari ${SEC.length} · ${x.items.length} pertanyaan · estimasi ±${Math.max(1,Math.round(x.items.length*0.6))} menit</p><div class="gl">Pertanyaan pada bagian ini</div>${x.items.map(it=>`<p class="sec-q"><b>${esc(it.kode_blanko||it.kode)}.</b> ${esc(it.pertanyaan_singkat||it.pertanyaan)}</p>`).join('')}</div>`}
  if(s.t==='q')return qh(s.it);
  const t=total(),miss=SEC.map(x=>({x,m:x.items.filter(it=>!fmt(it))})).filter(z=>z.m.length),pend=window.KuesionerSheets?KuesionerSheets.ambilAntrianTertunda().length:0;
  const ok=RES&&RES.ok;
- return`<div class="card">${ok?`<svg class="ck-svg" viewBox="0 0 84 84"><circle cx="42" cy="42" r="40"/><path d="M24 43l12 12 24-26"/></svg><h1 style="text-align:center">Terima kasih! 🎉</h1>`:`<h1>Tinjau & kirim</h1><p class="lead">Semua pertanyaan wajib diisi sebelum kirim. Tombol kirim akan mengarahkanmu ke yang masih kosong.</p>`}
+ return`<div class="card">${ok?`<svg class="ck-svg" viewBox="0 0 84 84"><circle cx="42" cy="42" r="40"/><path d="M24 43l12 12 24-26"/></svg><h1 style="text-align:center">Terima kasih.</h1><p class="lead" style="text-align:center">Jawaban Bapak/Ibu telah kami terima dan sangat membantu penelitian ini.</p>`:`<h1>Tinjau &amp; Kirim</h1><p class="lead">Periksa ringkasan jawaban di bawah. Ketuk butir mana pun untuk mengubah jawabannya. Semua pertanyaan wajib diisi sebelum jawaban dapat dikirim.</p><p class="note">Jawaban akan dikirim kepada peneliti dan tersimpan pada lembar data penelitian. Pastikan ringkasan sudah benar sebelum menekan tombol Kirim.</p>`}
  <div class="stats" style="margin-top:14px"><div class="card"><div class="num">${t}</div>terisi</div><div class="card"><div class="num">${IT.length-t}</div>belum</div><div class="card"><div class="num" style="font-size:24px;padding:5px 0">${ST.fac||'—'}</div>${esc(ST.who.nama||'')}</div></div>
- ${RES?`<div class="al${ok?'':' w'}"><b>${esc(RES.status)}</b><br>${esc(RES.pesan)}</div>`:''}${pend?`<div class="al w">${pend} pengiriman tertunda. <button class="lk" data-a="retry">Kirim ulang</button></div>`:''}
- 
+ ${RES?`<div class="al${ok?'':' w'}"><b>${esc(RES.status)}</b><br>${esc(RES.pesan)}</div>`:''}${pend?`<div class="al w">${pend} pengiriman tertunda dan tersimpan di perangkat ini. <button class="lk" data-a="retry">Kirim ulang</button></div>`:''}
+ ${ok?`<button class="btn big" data-a="reset">Isi kuesioner baru</button>`:''}
  </div>
+ <div class="card" style="margin-top:14px"><b>Ringkasan jawaban</b><p class="hint" style="margin:4px 0 6px">Fasilitas: ${esc(ST.fac||'—')} · Responden: ${esc(ST.who.nama||'—')}${ST.who.jabatan?', '+esc(ST.who.jabatan):''}</p>${SEC.map(x=>`<div class="rv-sec"><h3>Bagian ${esc(x.b)} — ${esc(x.t)}</h3>${x.items.map(it=>{const a=fmt(it),e=(ST.ev[it.kode]||'').trim();return`<button class="rv-it" data-a="jump" data-c="${it.kode}"><code>${esc(it.kode_blanko||it.kode)}</code><span style="flex:1">${esc(it.pertanyaan_singkat||it.pertanyaan)}<span class="a">${a?esc(a):'<span class="none">Belum diisi</span>'}</span>${e?`<span class="e">Bukti: ${esc(e)}</span>`:''}</span></button>`}).join('')}</div>`).join('')}</div>
  ${miss.length&&!ok?`<div class="card" style="margin-top:14px"><b>Belum terisi</b>${miss.map(z=>`<div style="margin-top:8px"><small style="color:var(--mut)">Bagian ${z.x.b}</small><br>${z.m.map(it=>`<button class="lk" data-a="jump" data-c="${it.kode}">${esc(it.kode_blanko||it.kode)}</button>`).join('')}</div>`).join('')}</div>`:''}`}
 function segs(){const cur=STEPS[ST.i].s?STEPS[ST.i].s.b:'',e=$('sg');
  if(e.children.length!==SEC.length)e.innerHTML=SEC.map(x=>`<button class="sg" data-a="sec" data-i="${STEPS.findIndex(z=>z.t==='intro'&&z.s===x)}" title="${esc(x.t)}" aria-label="Bagian ${x.b}"><i></i></button>`).join('');
  SEC.forEach((x,k)=>{const n=cnt(x),b=e.children[k];b.classList.toggle('cur',x.b===cur);b.classList.toggle('full',n===x.items.length);b.firstChild.style.width=n/x.items.length*100+'%'})}
-const EMO={'0':'🪪','A':'🗂️','B':'📅','C':'🧪','D':'🖼️','E':'☢️','F':'📏','G':'🛡️','H':'⚙️','I':'📝','J':'🧩','K':'✅'};
-const hint=it=>{const p=P(it),g=p.find(x=>x.k==='opt');return g&&p.length===1?`<p class="hint">${g.multi?'Boleh pilih lebih dari satu':'Pilih satu jawaban'}</p>`:''};
-function chrome(){const s=STEPS[ST.i],cur=s.s?s.s.b:'';
+const hint=it=>{if(it.kode==='B-01')return`<p class="hint">Pertanyaan ini terdiri dari dua bagian dan keduanya wajib dijawab. Skala 1–5: 1 = tidak pernah, 2 = jarang, 3 = kadang-kadang, 4 = sering, 5 = selalu (setiap hari). Di bawah skala, pilih pula status pencatatannya.</p>`;
+ const p=P(it);if(p.filter(x=>x.k==='opt'||x.k==='fld').length>1)return`<p class="hint">Pertanyaan ini terdiri dari beberapa bagian — jawab semuanya sebelum melanjutkan.</p>`;
+ const g=p.find(x=>x.k==='opt');return g&&p.length===1?`<p class="hint">${g.multi?'Boleh pilih lebih dari satu.':'Pilih satu jawaban.'}</p>`:''};
+function chrome(){if(SHOWALL){$('sl').textContent='Penelaahan seluruh pertanyaan';$('bi').innerHTML=`<button class="btn bk" data-a="alloff" aria-label="Kembali">←</button><button class="btn" data-a="alloff">Kembali ke pengisian</button><button class="btn p" data-a="print">Cetak / simpan PDF</button>`;return}
+ const s=STEPS[ST.i],cur=s.s?s.s.b:'';
  segs();
- $('sl').textContent=s.t==='q'||s.t==='intro'?`${EMO[s.s.b]||''} Bagian ${s.s.b} · ${s.t==='q'?(s.s.items.indexOf(s.it)+1)+' dari '+s.s.items.length:'pengantar'} · ${total()}/${IT.length} terisi`:s.t==='review'?'Tinjau & kirim':'Langkah '+(ST.i+1)+' dari 2';
+ $('sl').textContent=s.t==='q'||s.t==='intro'?`Bagian ${s.s.b} · ${s.t==='q'?(s.s.items.indexOf(s.it)+1)+' dari '+s.s.items.length:'pengantar'} · ${total()}/${IT.length} terisi`:s.t==='review'?'Tinjau & kirim':'Langkah '+(ST.i+1)+' dari 2';
  const q=s.t==='q',ans=q&&fmt(s.it);let pri,sk='';
  if(s.t==='fac')pri=`<button class="btn p" data-a="next"${ST.fac?'':' disabled'}>Lanjut →</button>`;
- else if(s.t==='intro')pri=`<button class="btn p rdy" data-a="next">Mulai bagian ${s.s.b} →</button>`;
+ else if(s.t==='intro')pri=`<button class="btn p rdy" data-a="next">Mulai Bagian ${s.s.b} →</button>`;
  else if(s.t==='review')pri=RES&&RES.ok?`<button class="btn p" data-a="reset">Isi kuesioner baru</button>`:`<button class="btn p rdy" id="send" data-a="kirim">Kirim jawaban ➤</button>`;
- else{pri=`<button class="btn p${ans?' rdy':''}" id="pn" data-a="next">Lanjut →</button>`;if(q)sk=`<button class="btn g" id="sk" data-a="next"${ans?' hidden':''}>Lewati</button>`}
+ else{pri=`<button class="btn p${ans?' rdy':''}" id="pn" data-a="next">Lanjut →</button>`;if(q)sk=`<button class="btn g" id="sk" data-a="skip"${ans?' hidden':''}>Lewati</button>`}
  $('bi').innerHTML=`<button class="btn bk" data-a="back" aria-label="Kembali"${ST.i?'':' disabled'}>←</button>${sk}${pri}`}
 function draw(dir){const e=$('st');e.className='st';e.innerHTML=view();if(dir){void e.offsetWidth;e.className='st '+(dir>0?'f':'b')}chrome();
- if(STEPS[ST.i].t==='who'&&!ST.who.nama)setTimeout(()=>{const n=$('nm');n&&n.focus({preventScroll:true})},450);
- if(RES&&RES.ok&&STEPS[ST.i].t==='review'&&dir)confetti()}
+ if(STEPS[ST.i].t==='who'&&!ST.who.nama)setTimeout(()=>{const n=$('nm');n&&n.focus({preventScroll:true})},450)}
+
 function maybeLock(){const locked=(RES&&RES.ok&&STEPS[ST.i].t==='review')||($('dr')&&$('dr').classList.contains('on'));const d=document.documentElement,b=document.body;if(locked){if(d.style.overflow!=='hidden'){const sb=window.innerWidth-d.clientWidth;d.dataset.sb=sb;if(sb)b.style.marginRight=sb+'px';const bt=document.querySelector('.bar');if(bt&&sb)bt.style.right=sb+'px'}d.style.overflow='hidden';b.style.overflow='hidden'}else{if(d.style.overflow==='hidden'){d.style.overflow='';b.style.overflow='';b.style.marginRight='';const bt=document.querySelector('.bar');if(bt)bt.style.right='';delete d.dataset.sb}}}
-function go(i,dir){ST.i=Math.max(0,Math.min(STEPS.length-1,i));ERR='';draw(dir===undefined?(i>=0?1:-1):dir);scrollTo({top:0});save();drawer(false)}
-function next(){const s=STEPS[ST.i];if(s.t==='fac'&&!ST.fac){toast('Pilih RSDK atau RSGM dulu');return}if(s.t==='who'&&!ST.who.nama.trim()){ERR='Nama wajib diisi ya.';draw(0);return}go(ST.i+1,1)}
+function go(i,dir,fromPop){ST.i=Math.max(0,Math.min(STEPS.length-1,i));ERR='';draw(dir===undefined?(i>=0?1:-1):dir);scrollTo({top:0});save();drawer(false);if(!fromPop){try{history.pushState({i:ST.i},'')}catch(e){}}}
+window.addEventListener('popstate',()=>{if(SHOWALL){SHOWALL=false;draw(0);return}if(ST.i>0)go(ST.i-1,-1,true)});
+try{history.replaceState({i:ST.i},'')}catch(e){}
+function next(){const s=STEPS[ST.i];if(s.t==='fac'&&!ST.fac){toast('Pilih fasilitas terlebih dahulu: RSDK atau RSGM.');return}
+ if(s.t==='who'&&!ST.who.nama.trim()){ERR='Nama responden wajib diisi.';draw(0);return}
+ if(s.t==='q'){if(!complete(s.it)){ERR='Pertanyaan ini belum dijawab lengkap. Mohon isi terlebih dahulu, atau tekan “Lewati” bila memang belum dapat dijawab saat ini.';draw(0);return}
+  if(s.it.kode==='K-04'&&!ST.k4agree){ERR='Mohon centang pernyataan kebenaran pada butir ini terlebih dahulu.';draw(0);return}}
+ go(ST.i+1,1)}
 let tm;function save(){clearTimeout(tm);tm=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(ST))}catch(e){}},300)}
 function toast(m){const t=$('ts');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2400)}
-function drawer(on){$('ov').classList.toggle('on',on);const d=$('dr');d.classList.toggle('on',on);maybeLock();if(on)d.innerHTML=`<h2 style="margin:4px 8px 12px">Bagian kuesioner</h2>`+SEC.map(s=>{const n=cnt(s),ix=STEPS.findIndex(x=>x.t==='intro'&&x.s===s);return`<button class="di${n===s.items.length?' d':''}" data-a="sec" data-i="${ix}"><b>${n===s.items.length?'✓':s.b}</b><span>${esc(s.t)}</span><small>${n}/${s.items.length}</small></button>`}).join('')+`<button class="di" data-a="sec" data-i="${STEPS.length-1}"><b>➤</b><span>Tinjau & kirim</span></button>`}
-function confetti(){const c=['#4f46e5','#06b6d4','#10b981','#f59e0b','#ec4899'];for(let i=0;i<60;i++){const e=document.createElement('i');e.className='cf';e.style.left=Math.random()*100+'vw';e.style.background=c[i%5];e.style.animationDelay=Math.random()*.6+'s';e.style.animationDuration=1.8+Math.random()*1.4+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),3600)}}
+function drawer(on){$('ov').classList.toggle('on',on);const d=$('dr');d.classList.toggle('on',on);maybeLock();if(on)d.innerHTML=`<h2 style="margin:4px 8px 12px">Bagian kuesioner</h2>`+SEC.map(s=>{const n=cnt(s),ix=STEPS.findIndex(x=>x.t==='intro'&&x.s===s);return`<button class="di${n===s.items.length?' d':''}" data-a="sec" data-i="${ix}"><b>${n===s.items.length?'✓':s.b}</b><span>${esc(s.t)}</span><small>${n}/${s.items.length}</small></button>`}).join('')+`<button class="di" data-a="sec" data-i="${STEPS.length-1}"><b>➤</b><span>Tinjau &amp; kirim</span></button><button class="di" data-a="all"><b>≡</b><span>Baca semua pertanyaan</span></button>`}
 
 /* interaksi */
-document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b)return;navigator.vibrate&&navigator.vibrate(6);const r=b.getBoundingClientRect(),z=Math.max(r.width,r.height)*2,s=document.createElement('span');s.className='rp';s.style.cssText=`width:${z}px;height:${z}px;left:${e.clientX-r.left-z/2}px;top:${e.clientY-r.top-z/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),620)});
+document.addEventListener('pointerdown',e=>{const b=e.target.closest('button');if(!b)return;const r=b.getBoundingClientRect(),z=Math.max(r.width,r.height)*2,s=document.createElement('span');s.className='rp';s.style.cssText=`width:${z}px;height:${z}px;left:${e.clientX-r.left-z/2}px;top:${e.clientY-r.top-z/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),620)});
 $('mb').onclick=()=>drawer(true);$('ov').onclick=()=>drawer(false);
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a;
  if(a==='tog'){const c=t.dataset.c,gi=+t.dataset.g,i=+t.dataset.i,it=BY[c],g=P(it)[gi],st=S(c),k='g'+gi;let sel=st[k]||[];const was=sel.includes(i);
   if(was)sel=sel.filter(x=>x!==i);else if(!g.multi)sel=[i];else sel=EXC.test(g.opts[i].l)?[i]:sel.filter(x=>!EXC.test(g.opts[x].l)).concat(i);
-  st[k]=sel;const y=scrollY;$('st').innerHTML=view();scrollTo(0,y);chrome();save();
-  const nb=document.querySelector(`[data-a=tog][data-c="${c}"][data-g="${gi}"][data-i="${i}"]`);nb&&nb.classList.add('pulse');
-  if(!was&&auto(it)&&!g.opts[i].f.length){const at=ST.i;setTimeout(()=>{if(ST.i===at)go(at+1,1)},480)}}
- else if(a==='fac'){ST.fac=t.dataset.f;document.querySelectorAll('.fc').forEach(b=>b.classList.toggle('on',b===t));t.classList.add('pulse');save();setTimeout(()=>go(1,1),420)}
- else if(a==='next')next();else if(a==='back')go(ST.i-1,-1);
+  if(!was&&it.kode==='K-02'&&sel.length>3){toast('Maksimal 3 pilihan untuk pertanyaan ini.');return}
+  st[k]=sel;ERR='';const y=scrollY;$('st').innerHTML=view();scrollTo(0,y);chrome();save();
+  const nb=document.querySelector(`[data-a=tog][data-c="${c}"][data-g="${gi}"][data-i="${i}"]`);nb&&nb.classList.add('pulse')}
+ else if(a==='fac'){ST.fac=t.dataset.f;document.querySelectorAll('.fc').forEach(b=>b.classList.toggle('on',b===t));save();chrome()}
+ else if(a==='all'){SHOWALL=true;draw(0);scrollTo({top:0})}
+ else if(a==='alloff'){SHOWALL=false;draw(0);scrollTo({top:0})}
+ else if(a==='print'){window.print()}
+ else if(a==='printall'){SHOWALL=true;draw(0);setTimeout(()=>window.print(),400)}
+ else if(a==='next')next();else if(a==='skip'){ERR='';go(ST.i+1,1)}else if(a==='back')go(ST.i-1,-1);
  else if(a==='sec')go(+t.dataset.i,1);
  else if(a==='jump'){go(STEPS.findIndex(x=>x.t==='q'&&x.it.kode===t.dataset.c),-1)}
- else if(a==='reset'){if(confirm('Hapus semua jawaban di perangkat ini dan mulai baru?')){try{localStorage.removeItem(KEY)}catch(e){}ST={i:0,fac:'',who:{nama:'',jabatan:'',kontak:''},s:{},ev:{}};RES=null;go(0,-1)}}
+ else if(a==='reset'){if(confirm('Hapus semua jawaban di perangkat ini dan mulai pengisian baru?')){try{localStorage.removeItem(KEY);localStorage.removeItem(SKEY)}catch(e){}ST={i:0,fac:'',who:{nama:'',jabatan:'',kontak:''},s:{},ev:{},k4agree:false};RES=null;SHOWALL=false;go(0,-1)}}
  else if(a==='kirim')kirim();
  else if(a==='retry'){t.disabled=true;KuesionerSheets.kirimUlangAntrianTertunda().then(()=>draw(0))}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.a==='k4'){ST.k4agree=t.checked;if(t.checked)ERR='';save()}});
 document.addEventListener('input',e=>{const t=e.target,a=t.dataset.a;if(!a)return;
+ if(a==='meta'&&t.dataset.k==='nama'&&t.value.trim()&&ERR){ERR='';const er=document.querySelector('.er');er&&er.remove()}
  if(a==='txt')S(t.dataset.c)[t.dataset.k]=t.value;else if(a==='ev')ST.ev[t.dataset.c]=t.value;else if(a==='meta')ST.who[t.dataset.k]=t.value;
  if(a==='txt'){segs();const an=!!fmt(BY[t.dataset.c]),k=$('sk'),p=$('pn');if(k)k.hidden=an;if(p)p.classList.toggle('rdy',an)}save()});
 document.addEventListener('keydown',e=>{const tg=e.target.tagName,typing=tg==='INPUT'||tg==='TEXTAREA',t=STEPS[ST.i].t;
@@ -535,24 +606,25 @@ document.addEventListener('keydown',e=>{const tg=e.target.tagName,typing=tg==='I
 /* kirim & ekspor (kompatibel sheets-config.js / Code.gs) */
 function kumpulkanJawabanKuesioner(){const answers={},evidence={};IT.forEach(it=>{answers[it.kode]=fmt(it);const e=(ST.ev[it.kode]||'').trim();if(e)evidence[it.kode]=e});
  return{facility:ST.fac,timestamp:new Date().toISOString(),respondent:{nama:ST.who.nama.trim(),jabatan:ST.who.jabatan.trim(),kontak:ST.who.kontak.trim()},answers,evidence,status:'Terkirim'}}
-function tampilkanStatus(r){RES=r;maybeLock();draw(r.ok?1:0)}
-async function kirim(){if(!ST.fac||!ST.who.nama.trim()){go(ST.fac?1:0,-1);return}
- const miss=IT.filter(it=>!fmt(it));
+function tampilkanStatus(r){RES=r;if(r&&r.ok){try{localStorage.setItem(SKEY,JSON.stringify({at:new Date().toISOString(),fac:ST.fac,nama:ST.who.nama}))}catch(e){}}maybeLock();draw(r.ok?1:0)}
+async function kirim(){if(RES&&RES.ok){toast('Jawaban sudah terkirim dari perangkat ini.');return}
+ if(!ST.fac||!ST.who.nama.trim()){go(ST.fac?1:0,-1);return}
+ const miss=IT.filter(it=>!complete(it)||(it.kode==='K-04'&&!ST.k4agree));
  if(miss.length){
    const k=miss[0].kode;
    const t=STEPS.findIndex(x=>x.t==='q'&&x.it.kode===k);
    if(t>=0){
-     toast('Masih '+miss.length+' pertanyaan belum diisi — arahkan ke yang pertama.');
+     toast('Masih ada '+miss.length+' pertanyaan yang belum lengkap — Anda diarahkan ke pertanyaan pertama yang belum lengkap.');
      go(t,-1);
    } else {
-     toast('Lengkapi semua pertanyaan dulu ya.');
+     toast('Mohon lengkapi semua pertanyaan terlebih dahulu.');
    }
    scrollTo({top:0});return;
  }
  const b=$('send');b.disabled=true;b.textContent='Mengirim…';
  try{tampilkanStatus(await kirimHasilKeSheets(kumpulkanJawabanKuesioner()))}catch(e){tampilkanStatus({ok:false,status:'Gagal',pesan:String(e)})}scrollTo({top:0,behavior:'smooth'})}
 document.addEventListener('focusin',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName))setTimeout(()=>e.target.scrollIntoView({block:'center',behavior:'smooth'}),320)});
-draw(0);if(RESUMED)toast('Draf dilanjutkan dari pertanyaan terakhir ✨');
+draw(0);if(RESUMED)toast('Draf sebelumnya dilanjutkan dari pertanyaan terakhir.');
 </script>
 </body>
 </html>
