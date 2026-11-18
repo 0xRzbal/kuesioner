@@ -1,70 +1,42 @@
-# Kuesioner QA/QC CBCT
+# Kuesioner QA/QC CBCT — v3
 
-Instrumen penelitian 24 butir untuk menilai program QA/QC CBCT di dua fasilitas
-radiologi (RSDK dan RSGM). Aplikasi web statis, tanpa backend sendiri: jawaban
-dikirim ke Google Sheets lewat Apps Script Web App.
+Aplikasi web untuk kuesioner 24 butir QA/QC CBCT di fasilitas RSDK dan RSGM.
+Antarmuka menggunakan Svelte + TypeScript; server HTTP Node menyajikan halaman
+dan aset hasil build. Jawaban dikirim ke Google Sheets melalui Apps Script.
 
 Live: https://questioners.hasiana.web.id/
 
-## Struktur repo
+## Struktur
 
-| Path | Isi |
-|---|---|
-| `v2/` | Versi aktif - Svelte 5 + Vite (source + build) |
-| `v2/src/lib/items.json` | 24 butir instrumen (pertanyaan, opsi, kode jawaban) |
-| `v2/src/lib/config.ts` | Konfigurasi tampilan (tujuan penelitian) |
-| `v2/src/lib/sheets.ts` | Pengiriman payload ke Apps Script Web App |
-| `v2/dist/` | Hasil build, dipakai untuk deploy ke nginx |
-| `v1/` | Versi lama single-file HTML (arsip) |
+- `src/` — Svelte UI, data 24 butir, validasi, autosave, dan Sheets client.
+- `server/server.ts` — server Node tanpa dependensi runtime.
+- `Code.gs` — endpoint Google Apps Script untuk Google Sheets.
+- `README-INTEGRASI-GOOGLE-SHEETS.md` — skema dan deployment Apps Script.
+- `headers-hasil-kuesioner.csv` — daftar kolom hasil.
 
-## Versi aktif (v2)
-
-Alur: pilih fasilitas -> identitas -> isi per butir (satu butir per halaman,
-auto-save localStorage) -> tinjau -> kirim.
-
-Karakteristik:
-
-- Setiap butir wajib terisi. Tombol kirim memeriksa kelengkapan dan
-  mengarahkan ke butir kosong pertama.
-- Butir multi-grup (mis. skala 1-5 plus status pemeriksaan) dianggap lengkap
-  hanya jika semua grup terisi.
-- Jawaban disimpan dua lapis: teks yang dibaca manusia dan kode ternormalisasi
-  (untuk rekap).
-- Tidak ada fitur cetak/PDF dan tidak ada blok "Tentang penelitian" di UI.
-
-## Build
+## Build dan tes
 
 ```bash
-cd v2
-npm install
+npm ci
 npm test
-npm run build      # hasil di v2/dist
+npm run check
+npm run build
+npm start
 ```
 
-Deploy: salin isi `v2/dist/` ke webroot nginx (`/var/www/questioners/`),
-pertahankan `sheets-config.js` bila memakai build lama.
+`npm start` melayani `127.0.0.1:8080` secara default. Atur `PORT` dan `HOST`
+melalui environment bila perlu. Build menghasilkan `dist/app.js`, `dist/app.css`,
+dan `dist-server/server.js`; halaman HTML dirakit server dari string TypeScript.
 
-## Backend Google Sheets
+## Deployment
 
-Apps Script Web App (`Code.gs`) menerima POST JSON:
+Systemd menjalankan `dist-server/server.js` sebagai service lokal. Nginx
+melakukan reverse proxy ke `http://127.0.0.1:8080` pada domain live. Detail
+unit dan reverse proxy ada di konfigurasi server.
 
-```json
-{
-  "facility": "RSDK",
-  "answers": { "0-07": "Ya, rutin", "A-01": "Ya, tertulis" },
-  "evidence": {},
-  "respondent": { "nama": "...", "jabatan": "...", "kontak": "..." },
-  "status": "Terkirim"
-}
-```
+## Perilaku kuesioner
 
-- Baris ditulis ke tab `Hasil_RSDK` atau `Hasil_RSGM`, 55 kolom
-  (teks + `<kode>_kode`).
-- `buildRekap()` menghitung ulang tab `Rekap` setelah setiap submit.
-- `doGet` mengembalikan status endpoint dan skema versi.
-
-## Catatan operasional
-
-- Jangan mengandalkan format nomor lokal untuk rumus spreadsheet; rekap
-  dihitung sebagai nilai di Apps Script.
-- Cache dikendalikan lewat header nginx `no-cache` dan query `?v=` pada aset.
+- 24 butir terbagi ke 12 bagian; jawaban tersimpan otomatis di perangkat.
+- Seluruh butir wajib lengkap sebelum kirim; validasi mengarahkan ke butir pertama yang kosong.
+- Nilai jawaban mempertahankan teks terbaca manusia serta kode normalisasi di Apps Script.
+- Fitur cetak/PDF dan blok identitas peneliti tidak disediakan di UI.

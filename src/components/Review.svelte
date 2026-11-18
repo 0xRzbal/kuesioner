@@ -4,7 +4,6 @@
   import { pendingCount, type SendResult } from '../lib/sheets';
   export let result: SendResult | null = null;
   export let onJump: (kode: string) => void;
-  export let onReset: () => void;
   export let onRetry: () => void;
   $: total = IT.filter((it) => complete(it, $state.s[it.kode] || {}) && (it.kode !== 'K-04' || $state.k4agree)).length;
   $: ok = !!(result && result.ok);
@@ -22,11 +21,13 @@
     <p class="note">Jawaban akan dikirim kepada peneliti dan tersimpan pada lembar data penelitian. Pastikan ringkasan sudah benar sebelum menekan tombol Kirim.</p>
   {/if}
 
-  <div class="stats">
-    <div class="card"><div class="num">{total}</div>terisi</div>
-    <div class="card"><div class="num">{IT.length - total}</div>belum</div>
-    <div class="card"><div class="num" style="font-size:24px;padding:5px 0">{$state.fac || '—'}</div>{$state.who.nama || ''}</div>
-  </div>
+  {#if !ok}
+    <div class="stats">
+      <div class="card"><div class="num">{total}</div>terisi</div>
+      <div class="card"><div class="num">{IT.length - total}</div>belum</div>
+      <div class="card"><div class="num" style="font-size:24px;padding:5px 0">{$state.fac || '—'}</div>{$state.who.nama || ''}</div>
+    </div>
+  {/if}
 
   {#if result}
     <div class="al" class:w={!ok}><b>{result.status}</b><br>{result.pesan}</div>
@@ -34,11 +35,9 @@
   {#if pend}
     <div class="al w">{pend} pengiriman tertunda dan tersimpan di perangkat ini. <button class="lk" on:click={onRetry}>Kirim ulang</button></div>
   {/if}
-  {#if ok}
-    <button class="btn big" on:click={onReset}>Isi kuesioner baru</button>
-  {/if}
 </div>
 
+{#if !ok}
 <div class="card" style="margin-top:14px">
   <b>Ringkasan jawaban</b>
   <p class="hint" style="margin:4px 0 6px">Fasilitas: {$state.fac || '—'} · Responden: {$state.who.nama || '—'}{$state.who.jabatan ? ', ' + $state.who.jabatan : ''}</p>
@@ -59,3 +58,4 @@
     </div>
   {/each}
 </div>
+{/if}

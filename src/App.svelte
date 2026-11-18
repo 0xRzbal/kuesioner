@@ -29,7 +29,7 @@
   $: subtitle =
     step.t === 'q' || step.t === 'intro'
       ? `Bagian ${step.s.b} · ${step.t === 'q' ? step.s.items.indexOf(step.it) + 1 + ' dari ' + step.s.items.length : 'pengantar'} · ${totalDone}/${IT.length} terisi`
-      : step.t === 'review' ? 'Tinjau & kirim' : `Langkah ${$state.i + 1} dari 2`;
+      : step.t === 'review' ? (result && result.ok ? 'Selesai' : 'Tinjau & kirim') : `Langkah ${$state.i + 1} dari 2`;
   const cnt = (s: Section) => s.items.filter((it) => complete(it, $state.s[it.kode] || {})).length;
 
   function go(i: number, fromPop = false) {
@@ -116,15 +116,18 @@
     <div class="tl">Kuesioner QA/QC CBCT<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
     <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>☰</button>
   </div>
-  <div class="sgs" role="navigation" aria-label="Kemajuan per bagian">
-    {#each SEC as x}
-      {@const n = cnt(x)}
-      <button class="sg" class:cur={!showAll && (step.t === 'q' || step.t === 'intro') && step.s.b === x.b} class:full={n === x.items.length}
-        title={x.t} aria-label="Bagian {x.b}" on:click={() => go(STEPS.findIndex((z) => z.t === 'intro' && z.s === x))}>
-        <i style="width:{(n / x.items.length) * 100}%"></i>
-      </button>
-    {/each}
-  </div>
+  {#if !showAll && (step.t === 'q' || step.t === 'intro')}
+    <div class="sgs" role="navigation" aria-label="Kemajuan per bagian">
+      {#each SEC as x}
+        {@const n = cnt(x)}
+        <button class="sg" class:cur={step.s.b === x.b} class:full={n === x.items.length}
+          title={x.t} aria-label="Bagian {x.b}" on:click={() => go(STEPS.findIndex((z) => z.t === 'intro' && z.s === x))}>
+          <i style="width:{(n / x.items.length) * 100}%"></i>
+        </button>
+      {/each}
+    </div>
+    <div class="prog"><span>Kemajuan pengisian</span><span><b>{totalDone}</b> dari {IT.length} butir · {Math.round((totalDone / IT.length) * 100)}%</span></div>
+  {/if}
 </header>
 
 <main id="stage">
@@ -139,7 +142,7 @@
   {:else if step.t === 'q'}
     <Question it={step.it} bind:error />
   {:else}
-    <Review {result} onJump={jumpTo} onReset={resetAll} onRetry={retry} />
+    <Review {result} onJump={jumpTo} onRetry={retry} />
   {/if}
 </main>
 
@@ -161,7 +164,7 @@
         {#if result && result.ok}
           <button class="btn p" on:click={resetAll}>Isi kuesioner baru</button>
         {:else}
-          <button class="btn p" id="send" disabled={sending} on:click={kirim}>{sending ? 'Mengirim…' : 'Kirim jawaban ➤'}</button>
+          <button class="btn p" id="send" disabled={sending} on:click={kirim}>{sending ? 'Mengirim…' : 'Kirim Jawaban'}</button>
         {/if}
       {:else}
         <button class="btn p" on:click={next}>Lanjut →</button>

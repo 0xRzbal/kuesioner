@@ -6,14 +6,23 @@
   function pick(f: string) { $state.fac = f; }
 </script>
 
-<div class="card">
+<div class="hero">
   <span class="chip">Kuesioner Penelitian</span>
   <h1>{D.judul}</h1>
   <p class="lead">{CONFIG.tujuan}</p>
+  <div class="hero-meta">
+    <div><b>24</b><span>Butir pertanyaan</span></div>
+    <div><b>12</b><span>Bagian (0, A–K)</span></div>
+    <div><b>10–20</b><span>Menit pengisian</span></div>
+    <div><b>2</b><span>Fasilitas (RSDK &amp; RSGM)</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:14px">
 
   <div class="note">
     <b>Petunjuk pengisian.</b> Kuesioner terdiri dari 24 butir terpilih dalam 12 bagian, dijawab satu
-    per satu; estimasi waktu 10–20 menit. Ke-24 butir dipilih dari bank instrumen penelitian dan
+    per satu; estimasi waktu 10–20 menit. Butir diambil dari bank instrumen penelitian dan
     kodenya mengikuti dokumen induk, sehingga penomoran tampak tidak berurutan — bukan ada
     pertanyaan yang hilang. Jawaban tersimpan otomatis di perangkat ini dan dapat dilanjutkan
     kemudian. Pada sejumlah butir diminta bukti pendukung: bukti ditunjukkan kepada peneliti saat
@@ -39,7 +48,7 @@
     {/each}
   </div>
 
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px" class="noprint">
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
     <button class="btn" on:click={onShowAll}>Baca semua pertanyaan</button>
   </div>
 </div>

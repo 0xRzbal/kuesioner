@@ -1,5 +1,6 @@
 /**
- * Teks pengantar penelitian yang tampil di halaman awal dan penelaahan.
+ * KONFIGURASI PENELITI — WAJIB DIISI sebelum tautan dibagikan ke dosen/responden.
+ * Satu-satunya tempat identitas penelitian ditulis; semua halaman mengambil dari sini.
  */
 export const CONFIG = {
   tujuan:
