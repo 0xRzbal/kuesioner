@@ -5,3 +5,9 @@
 `kuesioner-v3-deploy-rombak.zip` is the revised visual deployment bundle. It uses the same Node server/package as v3 and replaces only the built client assets on the live service.
 
 `kuesioner-v4-deploy.zip` is the v4 deployment bundle. It includes the built client assets, Node server bundle, and package metadata; deploy it using the existing `kuesioner.service` and reverse proxy.
+
+`kuesioner-v4-deploy-peneliti.zip` is the v4 deployment bundle with peneliti data updated:
+- Peneliti: Hasiana Rahmani S.S.Tr.Kes.(Rad)
+- Institusi: Prodi Imaging Diagnostik - Pascasarjana - Poltekkes Kemenkes Semarang
+- Pembimbing: Dr. Gatot Murti Wibowo, S.Pd., M.Sc. (MedTech); Yeti Kartikasari, S.T., M.Kes
+- Kontak: rhasiana11@gmail.com 089668070696
