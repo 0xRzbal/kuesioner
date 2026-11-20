@@ -121,4 +121,10 @@ details .in{margin-top:10px;background:#fff}
   .bi .btn.g{grid-column:1/-1;grid-row:1;height:40px;border-top:1px solid var(--ln);border-radius:0 0 10px 10px}
   .bi .btn.bk{grid-row:2}
   .bi .btn.p{grid-row:2}}
+/* Research info section (Landing) */
+.research-info{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:14.5px;line-height:1.5;margin-top:14px}
+.research-info b{color:var(--mut);font-weight:600}
+.research-info span{white-space:pre-line}
+@media(max-width:520px){.research-info{grid-template-columns:1fr}.research-info b{margin-top:6px}}
+
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
