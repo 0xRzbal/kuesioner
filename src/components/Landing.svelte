@@ -14,7 +14,17 @@
     <div><b>24</b><span>Butir pertanyaan</span></div>
     <div><b>12</b><span>Bagian (0, A–K)</span></div>
     <div><b>10–20</b><span>Menit pengisian</span></div>
-    <div><b>2</b><span>Fasilitas (RSDK &amp; RSGM)</span></div>
+    <div><b>2</b><span>Fasilitas (RSDK & RSGM)</span></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:14px">
+  <h2>Tentang penelitian ini</h2>
+  <div class="research-info">
+    <div class="ri-row"><b>Peneliti</b><span>{CONFIG.peneliti}</span></div>
+    <div class="ri-row"><b>Institusi</b><span>{CONFIG.institusi}</span></div>
+    <div class="ri-row"><b>Pembimbing</b><span>{CONFIG.pembimbing}</span></div>
+    <div class="ri-row"><b>Kontak</b><span>{CONFIG.kontak}</span></div>
   </div>
 </div>
 
