@@ -3,7 +3,6 @@
   import { D, IT, SEC } from '../lib/engine';
   import { state } from '../lib/store';
   export let onShowAll: () => void;
-  export let onReset: () => void;
   function pick(f: string) { $state.fac = f; }
 </script>
 
@@ -59,8 +58,7 @@
     secara sukarela. Jawaban hanya digunakan untuk keperluan penelitian ini dan tersimpan pada
     lembar data penelitian (Google Sheets) milik peneliti. Identitas responden dirahasiakan
     dalam pelaporan hasil. Bapak/Ibu boleh berhenti dan menarik diri kapan pun sebelum jawaban
-    dikirim, tanpa konsekuensi apa pun; draf yang belum dikirim hanya tersimpan di perangkat ini
-    dan dapat dihapus dengan tombol “Mulai ulang / Hapus draf”.
+    dikirim, tanpa konsekuensi apa pun; draf yang belum dikirim hanya tersimpan di perangkat ini.
   </p>
 
   <label class="consent">
@@ -79,6 +77,5 @@
 
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
     <button class="btn" on:click={onShowAll}>Baca semua pertanyaan</button>
-    <button class="btn g" on:click={onReset}>Mulai ulang / Hapus draf</button>
   </div>
 </div>

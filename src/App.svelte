@@ -149,7 +149,7 @@
   {#if showAll}
     <AllView />
   {:else if step.t === 'fac'}
-    <Landing onShowAll={() => { showAll = true; window.scrollTo({ top: 0 }); }} onReset={resetAll} />
+    <Landing onShowAll={() => { showAll = true; window.scrollTo({ top: 0 }); }} />
   {:else if step.t === 'who'}
     <Who bind:error />
   {:else if step.t === 'intro'}
@@ -157,7 +157,7 @@
   {:else if step.t === 'q'}
     <Question it={step.it} bind:error />
   {:else}
-    <Review {result} onJump={jumpTo} onRetry={retry} onReset={resetAll} />
+    <Review {result} onJump={jumpTo} onRetry={retry} />
   {/if}
 </main>
 
