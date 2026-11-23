@@ -27,7 +27,7 @@
     <div class="stats">
       <div class="card"><div class="num">{total}</div>terisi</div>
       <div class="card"><div class="num">{IT.length - total}</div>belum</div>
-      <div class="card"><div class="num" style="font-size:24px;padding:5px 0">{$state.fac || '—'}</div>{$state.who.nama || ''}</div>
+      <div class="card"><div class="num">{SEC.length}</div>bagian</div>
     </div>
   {/if}
 
