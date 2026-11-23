@@ -8,6 +8,7 @@
   <h1 style="font-size:clamp(22px,5vw,30px)">{D.judul}</h1>
   <p class="lead">{CONFIG.tujuan}</p>
   <p class="note">Halaman ini menampilkan seluruh pertanyaan apa adanya untuk dibaca dan ditelaah sebelum mengisi.</p>
+  <p class="note">Nomor butir tampak tidak berurutan (mis. Bagian B hanya memiliki B1 dan B4; Bagian C memiliki C1, C7, C8, dan C12) karena kodenya mengikuti bank instrumen/dokumen induk yang sama di semua fasilitas — bukan ada pertanyaan yang hilang.</p>
 </div>
 
 {#each SEC as x}

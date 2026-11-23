@@ -33,13 +33,20 @@
   const cnt = (s: Section) => s.items.filter((it) => complete(it, $state.s[it.kode] || {})).length;
 
   function go(i: number, fromPop = false) {
-    $state.i = Math.max(0, Math.min(STEPS.length - 1, i));
+    let target = Math.max(0, Math.min(STEPS.length - 1, i));
+    // Gate identitas: navigasi maju melewati langkah Who (indeks 1) terkunci sampai nama terisi.
+    if (target > 1 && target > $state.i && !$state.who.nama.trim()) {
+      toast('Isi identitas responden terlebih dahulu — nama wajib diisi sebelum mulai menjawab.');
+      target = 1;
+    }
+    $state.i = target;
     error = ''; drawerOpen = false;
     window.scrollTo({ top: 0 });
     if (!fromPop) { try { history.pushState({ i: $state.i }, ''); } catch { /* abaikan */ } }
   }
   function next() {
     if (step.t === 'fac' && !$state.fac) { toast('Pilih fasilitas terlebih dahulu: RSDK atau RSGM.'); return; }
+    if (step.t === 'fac' && !$state.consent) { toast('Mohon centang pernyataan persetujuan pada halaman ini terlebih dahulu.'); return; }
     if (step.t === 'who' && !$state.who.nama.trim()) { error = 'Nama responden wajib diisi.'; return; }
     if (step.t === 'q') {
       if (!complete(step.it, $state.s[step.it.kode] || {})) {
@@ -64,9 +71,13 @@
       answers[it.kode] = fmt(it, $state.s[it.kode] || {});
       const e = ($state.ev[it.kode] || '').trim(); if (e) evidence[it.kode] = e;
     });
+    // Identitas alat (opsional) TIDAK menambah kolom Sheets: nilainya digabung ke
+    // kolom kontak yang sudah ada (No_HP_Email) agar tetap tersimpan & terbaca peneliti.
+    const alatInfo = [$state.who.alat.trim(), $state.who.tahunAlat.trim() ? 'pemasangan ' + $state.who.tahunAlat.trim() : '' ].filter(Boolean).join(', ');
+    const kontak = [$state.who.kontak.trim(), alatInfo ? 'Unit CBCT: ' + alatInfo : ''].filter(Boolean).join(' | ');
     return {
       facility: $state.fac, timestamp: new Date().toISOString(),
-      respondent: { nama: $state.who.nama.trim(), jabatan: $state.who.jabatan.trim(), kontak: $state.who.kontak.trim() },
+      respondent: { nama: $state.who.nama.trim(), jabatan: $state.who.jabatan.trim(), kontak },
       answers, evidence, status: 'Terkirim'
     };
   }
@@ -94,7 +105,7 @@
       if (sb && sb.at) {
         result = { ok: true, status: 'Terkirim ke Sheets', pesan: `Jawaban dari perangkat ini sudah pernah dikirim pada ${new Date(sb.at).toLocaleString('id-ID')}. Pengiriman ulang dikunci untuk mencegah data ganda. Gunakan tombol “Isi kuesioner baru” bila memang perlu mengisi ulang dari awal.` };
         $state.i = STEPS.length - 1;
-      } else if ($state.i > 1) toast('Draf sebelumnya dilanjutkan dari pertanyaan terakhir.');
+      } else if ($state.i > 1) toast('Draf sebelumnya dilanjutkan.');
       history.replaceState({ i: $state.i }, '');
     } catch { /* abaikan */ }
     const onPop = () => { if (showAll) { showAll = false; return; } if ($state.i > 0) go($state.i - 1, true); };
@@ -116,8 +127,8 @@
 
 <header class="top">
   <div class="th">
-    <img class="logo" src="/app-peneliti.jpg" alt="Peneliti" />
-    <div class="tl">Klarifikasi QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
+    <img class="logo" src="/app-peneliti.jpg" alt="Peneliti" role="button" tabindex="0" title="Kembali ke halaman awal" on:click={() => go(0)} />
+    <div class="tl" role="button" tabindex="0" title="Kembali ke halaman awal" style="cursor:pointer" on:click={() => go(0)}>Klarifikasi QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
     <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>&#9776;</button>
   </div>
   {#if !showAll && (step.t === 'q' || step.t === 'intro')}
@@ -138,7 +149,7 @@
   {#if showAll}
     <AllView />
   {:else if step.t === 'fac'}
-    <Landing onShowAll={() => { showAll = true; window.scrollTo({ top: 0 }); }} />
+    <Landing onShowAll={() => { showAll = true; window.scrollTo({ top: 0 }); }} onReset={resetAll} />
   {:else if step.t === 'who'}
     <Who bind:error />
   {:else if step.t === 'intro'}
@@ -146,7 +157,7 @@
   {:else if step.t === 'q'}
     <Question it={step.it} bind:error />
   {:else}
-    <Review {result} onJump={jumpTo} onRetry={retry} />
+    <Review {result} onJump={jumpTo} onRetry={retry} onReset={resetAll} />
   {/if}
 </main>
 
@@ -156,11 +167,11 @@
       <button class="btn bk" aria-label="Kembali" on:click={() => (showAll = false)}>&#8249;</button>
     {:else}
       <button class="btn bk" aria-label="Kembali" disabled={$state.i === 0} on:click={() => go($state.i - 1)}>&#8249;</button>
-      {#if step.t === 'q' && !complete(step.it, $state.s[step.it.kode] || {})}
+      {#if step.t === 'q' && step.it.kode !== 'K-04' && !complete(step.it, $state.s[step.it.kode] || {})}
         <button class="btn g" on:click={() => go($state.i + 1)}>Lewati</button>
       {/if}
       {#if step.t === 'fac'}
-        <button class="btn p" disabled={!$state.fac} on:click={next}>Lanjut →</button>
+        <button class="btn p" disabled={!$state.fac || !$state.consent} on:click={next}>Lanjut →</button>
       {:else if step.t === 'intro'}
         <button class="btn p" on:click={next}>Mulai Bagian {step.s.b} →</button>
       {:else if step.t === 'review'}

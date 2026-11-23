@@ -8,8 +8,8 @@ const E = await import('/tmp/engine-v2.mjs');
 let fails = 0;
 const assert = (c, m) => { console.log((c ? 'PASS' : 'FAIL') + ' ' + m); if (!c) fails++; };
 
-assert(E.IT.length === 24, '24 butir termuat');
-assert(E.SEC.length === 12, '12 bagian terbentuk');
+assert(E.IT.length === 25, '25 butir termuat');
+assert(E.SEC.length === 13, '13 bagian terbentuk');
 
 // Bangun jawaban penuh sintetis untuk setiap butir: pilih opsi pertama tiap grup, isi semua field.
 function fullAnswer(it) {
@@ -29,12 +29,12 @@ for (const it of E.IT) {
   assert(!E.complete(it, {}), `${it.kode} complete() false untuk jawaban kosong`);
 }
 // Kasus spesifik hasil audit v1
-const c10 = E.BY['C-10'];
-assert(E.P(c10).filter((g) => g.k === 'fld').length === 3, 'C-10 terurai menjadi 3 kolom urutan');
-assert(/Urutan 1: Isi uji/.test(E.fmt(c10, fullAnswer(c10))), 'C-10 terformat sebagai urutan');
+const c8 = E.BY['C-08'];
+assert(E.P(c8)[0].multi === true && E.P(c8)[0].opts.length === 5, 'C-08 lima tahap, multi-pilih');
+assert(E.complete(c8, { g0: [1, 2] }), 'C-08 lengkap walau kolom tahun opsional kosong');
 const b1 = E.BY['B-01'];
 assert(E.P(b1).length === 2 && !E.complete(b1, { g0: [0] }), 'B-01 wajib dua bagian (skala saja tidak cukup)');
-assert(E.expand('Y, rutin') === 'Ya, rutin' && E.expand('BDD') === 'Belum Dapat Ditentukan' && E.expand('TB') === 'Tidak Berlaku', 'expand() singkatan benar');
+assert(E.expand('Y, rutin') === 'Ya, rutin' && E.expand('BDD') === 'Belum dapat ditentukan' && E.expand('TB') === 'Tidak berlaku', 'expand() singkatan benar (sentence case)');
 const k2 = E.BY['K-02'];
 assert(E.P(k2)[0].multi === true, 'K-02 pilihan ganda');
 

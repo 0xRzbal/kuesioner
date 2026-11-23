@@ -25,7 +25,7 @@ function renderDocument(): string {
 <title>Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral</title>
 <meta name="description" content="Formulir klarifikasi pelaksanaan QA/QC CBCT ekstraoral. 25 butir dalam 13 bagian untuk fasilitas RSDK dan RSGM.">
 <meta property="og:title" content="Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral">
-<meta property="og:description" content="Formulir klarifikasi: 25 butir, 13 bagian, estimasi 8–12 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
+<meta property="og:description" content="Formulir klarifikasi: 25 butir, 13 bagian, estimasi 10–15 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#001f54">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
