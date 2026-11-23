@@ -1,5 +1,5 @@
 {
- "judul": "Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom",
+ "judul": "Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral",
  "jumlah_butir": 24,
  "catatan_kode": "kode = kode normalisasi untuk kolom spreadsheet (contoh 0-01). kode_blanko = kode persis di dokumen Word (contoh 0.1). 0.1 = 0-01, A1 = A-01, D7 = D-07.",
  "fasilitas": [
@@ -14,7 +14,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian 0 — Identitas responden, fasilitas, dan verifikasi alat",
    "pertanyaan": "Saat ini, apakah mode 3D (CBCT) masih aktif dan dipakai untuk pelayanan?",
-   "pertanyaan_singkat": "Apakah mode 3D (CBCT) aktif dan dipakai untuk pelayanan saat ini?",
+   "pertanyaan_singkat": "Saat ini, apakah mode 3D (CBCT) masih aktif dan dipakai untuk pelayanan?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y, rutin ☐ Y, terbatas ☐ T, mode 3D tidak dipakai ☐ BDD",
    "bukti_diminta": "Observasi menu konsol"
@@ -26,7 +26,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
    "pertanyaan": "Program QA/QC khusus mode CBCT 3D — apakah ada dan terpisah dari program panoramik/sefalometri?",
-   "pertanyaan_singkat": "Apakah tersedia program QA/QC yang khusus untuk mode CBCT 3D (terpisah dari program panoramik / sefalometri)?",
+   "pertanyaan_singkat": "Program QA/QC khusus mode CBCT 3D — apakah ada dan terpisah dari program panoramik/sefalometri?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y, tertulis ☐ Y, tidak tertulis ☐ T ☐ BDD",
    "bukti_diminta": "Dokumen program — sebutkan nomor & tanggalnya"
@@ -38,9 +38,9 @@
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
    "pertanyaan": "Kalau ada, program itu disusun berdasarkan apa?",
-   "pertanyaan_singkat": "Dasar penyusunan program tersebut",
+   "pertanyaan_singkat": "Kalau ada, program itu disusun berdasarkan apa?",
    "tipe": "isian",
-   "pilihan_jawaban": "☐ Panduan pabrikan ☐ AAPM TG-261 ☐ Regulasi BAPETEN / Kemenkes ☐ Gabungan — sebutkan: ………… ☐ TB",
+   "pilihan_jawaban": "☐ Panduan pabrikan ☐ AAPM TG-261 (panduan QA CBCT — laporan gugus tugas AAPM) ☐ Regulasi BAPETEN / Kemenkes ☐ Gabungan — sebutkan: ………… ☐ TB",
    "bukti_diminta": "Dokumen program"
   },
   {
@@ -50,7 +50,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
    "pertanyaan": "Bagaimana SOP pengujian QA/QC CBCT di tempat ini — khusus CBCT, digabung dengan modalitas lain, atau sekadar mengikuti panduan pabrikan?",
-   "pertanyaan_singkat": "Apakah tersedia SOP pengujian QA/QC CBCT? SOP itu khusus CBCT atau digabung dengan modalitas lain?",
+   "pertanyaan_singkat": "Bagaimana SOP pengujian QA/QC CBCT di tempat ini — khusus CBCT, digabung dengan modalitas lain, atau sekadar mengikuti panduan pabrikan?",
    "tipe": "isian",
    "pilihan_jawaban": "☐ SOP khusus CBCT ☐ SOP gabungan ☐ Mengikuti panduan pabrikan saja ☐ T, belum ada SOP",
    "bukti_diminta": "Dokumen SOP — nomor & tanggal pengesahan"
@@ -62,7 +62,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian B — Jadwal, frekuensi pengujian, dan pemisahan sumber bukti",
    "pertanyaan": "Apakah ada pemeriksaan harian (daily check) sebelum alat dipakai?",
-   "pertanyaan_singkat": "Apakah dilakukan pemeriksaan sebelum alat digunakan setiap hari (daily check)?",
+   "pertanyaan_singkat": "Apakah ada pemeriksaan harian (daily check) sebelum alat dipakai?",
    "tipe": "skala",
    "pilihan_jawaban": "Skala 1–5: …… • ☐ Y, tercatat ☐ Y, tidak tercatat ☐ T",
    "bukti_diminta": "Log harian terakhir"
@@ -74,10 +74,10 @@
    "subbagian": null,
    "judul_bagian": "Bagian B — Jadwal, frekuensi pengujian, dan pemisahan sumber bukti",
    "pertanyaan": "Data commissioning (uji penerimaan waktu alat pertama dipasang) — apakah tersedia untuk alat ini?",
-   "pertanyaan_singkat": "Apakah tersedia data commissioning (uji penerimaan saat alat pertama dipasang) untuk alat ini?",
+   "pertanyaan_singkat": "Data commissioning (uji penerimaan waktu alat pertama dipasang) — apakah tersedia untuk alat ini?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y, lengkap ☐ Y, sebagian ☐ T, tidak diperoleh ☐ BDD",
-   "bukti_diminta": "★ Laporan commissioning — tahun & pelaksana: …………"
+   "bukti_diminta": "★ Laporan commissioning (tahun & pelaksana)"
   },
   {
    "kode": "C-01",
@@ -86,7 +86,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Saat ini, apakah fasilitas punya phantom khusus CBCT?",
-   "pertanyaan_singkat": "Apakah fasilitas memiliki phantom khusus CBCT saat ini?",
+   "pertanyaan_singkat": "Saat ini, apakah fasilitas punya phantom khusus CBCT?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y ☐ T, tidak memiliki ☐ BDD",
    "bukti_diminta": "★ Foto phantom / inventaris alat QC"
@@ -98,7 +98,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Untuk kepentingan penelitian ini, adakah phantom CBCT yang bisa diakses dari institusi pendidikan atau pihak lain?",
-   "pertanyaan_singkat": "Apakah peneliti memiliki / dapat mengakses phantom CBCT dari institusi pendidikan atau pihak lain selama…",
+   "pertanyaan_singkat": "Untuk kepentingan penelitian ini, adakah phantom CBCT yang bisa diakses dari institusi pendidikan atau pihak lain?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y — sumber: ………… ☐ T ☐ Sedang diupayakan: …………",
    "bukti_diminta": "Surat peminjaman bila ada"
@@ -110,9 +110,9 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Kalau phantom belum tersedia, kira-kira jalur mana yang paling mungkin ditempuh fasilitas? (centang semua yang realistis)",
-   "pertanyaan_singkat": "Apabila phantom tidak tersedia, jalur mana yang paling mungkin ditempuh fasilitas? (beri ✓ semua yang…",
+   "pertanyaan_singkat": "Kalau phantom belum tersedia, kira-kira jalur mana yang paling mungkin ditempuh fasilitas? (centang semua yang realistis)",
    "tipe": "pilihan_ganda",
-   "pilihan_jawaban": "☐ Pinjam dari vendor saat servis / kunjungan berkala ☐ Pinjam dari lembaga penguji saat UKES ☐ Pinjam dari institusi pendidikan ☐ Pengadaan baru ☐ Sewa ☐ Belum ada jalur yang realistis — alasan: …………",
+   "pilihan_jawaban": "☐ Pinjam dari vendor saat servis / kunjungan berkala ☐ Pinjam dari lembaga penguji saat UKES (Uji Kesesuaian) ☐ Pinjam dari institusi pendidikan ☐ Pengadaan baru ☐ Sewa ☐ Belum ada jalur yang realistis — alasan: …………",
    "bukti_diminta": "—"
   },
   {
@@ -122,7 +122,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Saat commissioning, kalibrasi, atau servis, adakah vendor/lembaga penguji yang pernah membawa phantom sendiri ke sini?",
-   "pertanyaan_singkat": "Apakah vendor / lembaga penguji pernah membawa phantom sendiri saat commissioning, kalibrasi, atau servis…",
+   "pertanyaan_singkat": "Saat commissioning, kalibrasi, atau servis, adakah vendor/lembaga penguji yang pernah membawa phantom sendiri ke sini?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y — kapan & oleh siapa: ………… ☐ T ☐ BDD",
    "bukti_diminta": "Laporan commissioning / servis"
@@ -134,7 +134,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Soal ketiadaan phantom, kendala apa yang paling terasa di fasilitas ini? Urutkan 3 teratas (angka 1–3).",
-   "pertanyaan_singkat": "Kendala utama ketiadaan phantom di fasilitas ini (urutkan 3 teratas dengan angka 1–3)",
+   "pertanyaan_singkat": "Soal ketiadaan phantom, kendala apa yang paling terasa di fasilitas ini? Urutkan 3 teratas (angka 1–3).",
    "tipe": "isian",
    "pilihan_jawaban": "Urutan 1: ………… • Urutan 2: ………… • Urutan 3: …………",
    "bukti_diminta": "—"
@@ -146,7 +146,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
    "pertanyaan": "Seandainya protokol uji phantom dan formulirnya disiapkan dari hasil penelitian ini, apakah fasilitas bersedia menjadikannya uji berkala begitu phantom tersedia?",
-   "pertanyaan_singkat": "Kesediaan fasilitas: apabila protokol uji phantom dan formulirnya disediakan dari hasil penelitian ini,…",
+   "pertanyaan_singkat": "Seandainya protokol uji phantom dan formulirnya disiapkan dari hasil penelitian ini, apakah fasilitas bersedia menjadikannya uji berkala begitu phantom tersedia?",
    "tipe": "isian",
    "pilihan_jawaban": "☐ Bersedia ☐ Bersedia dengan penyesuaian: ………… ☐ Belum dapat memutuskan ☐ Tidak bersedia — alasan: …………",
    "bukti_diminta": "—"
@@ -155,10 +155,10 @@
    "kode": "D-01",
    "kode_blanko": "D1",
    "bagian": "D",
-   "subbagian": "D-A",
+   "subbagian": null,
    "judul_bagian": "Bagian D — Kualitas citra CBCT",
    "pertanyaan": "Apakah mutu citra CBCT dinilai secara klinis oleh dokter spesialis radiologi atau radiologi kedokteran gigi?",
-   "pertanyaan_singkat": "Apakah mutu citra CBCT dinilai secara klinis oleh dokter spesialis radiologi / radiologi kedokteran gigi?",
+   "pertanyaan_singkat": "Apakah mutu citra CBCT dinilai secara klinis oleh dokter spesialis radiologi atau radiologi kedokteran gigi?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y, untuk setiap pemeriksaan ☐ Y, berkala / sampel ☐ Y, hanya bila ada keluhan ☐ T",
    "bukti_diminta": "Formulir / catatan penilaian citra"
@@ -167,10 +167,10 @@
    "kode": "D-04",
    "kode_blanko": "D4",
    "bagian": "D",
-   "subbagian": "D-A",
+   "subbagian": null,
    "judul_bagian": "Bagian D — Kualitas citra CBCT",
-   "pertanyaan": "Apakah ada keluhan tertulis dari dokter pengirim soal mutu citra CBCT — misalnya berisik, artefak, kurang tajam, atau FOV kurang?",
-   "pertanyaan_singkat": "Apakah ada keluhan tertulis dari dokter pengirim tentang mutu citra CBCT (terlalu berisik, artefak, kurang…",
+   "pertanyaan": "Apakah ada keluhan tertulis dari dokter pengirim soal mutu citra CBCT — misalnya berisik, artefak, kurang tajam, atau FOV (field of view / luas lapang pandang) kurang?",
+   "pertanyaan_singkat": "Apakah ada keluhan tertulis dari dokter pengirim soal mutu citra CBCT — misalnya berisik, artefak, kurang tajam, atau FOV (field of view / luas lapang pandang) kurang?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y — contoh keluhan terakhir: ………… ☐ T ☐ Keluhan lisan saja",
    "bukti_diminta": "Buku / log keluhan"
@@ -182,10 +182,10 @@
    "subbagian": null,
    "judul_bagian": "Bagian E — Keluaran radiasi dan dosimetri khusus CBCT",
    "pertanyaan": "Akurasi kVp khusus mode CBCT 3D (bukan hanya panoramik) — pernah diukur tidak? Kapan terakhir, dan di setelan kVp berapa saja?",
-   "pertanyaan_singkat": "Apakah pernah dilakukan pengukuran akurasi kVp pada mode CBCT 3D secara tersendiri (bukan hanya mode…",
+   "pertanyaan_singkat": "Akurasi kVp khusus mode CBCT 3D (bukan hanya panoramik) — pernah diukur tidak? Kapan terakhir, dan di setelan kVp berapa saja?",
    "tipe": "pilihan",
    "pilihan_jawaban": "Mode 3D tersendiri: ☐ Y ☐ T, hanya mode 2D ☐ BDD • Terakhir: ………… • Pilihan kVp: …………",
-   "bukti_diminta": "LHU / laporan ukur per mode"
+   "bukti_diminta": "LHU (Laporan Hasil Uji) / laporan ukur per mode"
   },
   {
    "kode": "F-05",
@@ -194,7 +194,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian F — Kalibrasi alat ukur",
    "pertanyaan": "Apakah ada label/tanda masa berlaku kalibrasi yang terpasang di alat?",
-   "pertanyaan_singkat": "Apakah tersedia label / tanda masa berlaku kalibrasi yang terpasang pada alatnya?",
+   "pertanyaan_singkat": "Apakah ada label/tanda masa berlaku kalibrasi yang terpasang di alat?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Y, semua alat ☐ Y, sebagian ☐ T",
    "bukti_diminta": "Foto label pada alat"
@@ -206,7 +206,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian G — Keselamatan, mekanik, dan lingkungan",
    "pertanyaan": "Warm-up / kalibrasi otomatis sebelum pemakaian — biasanya dilakukan kapan, dan hasilnya tercatat atau tidak?",
-   "pertanyaan_singkat": "Prosedur warm-up / kalibrasi otomatis sebelum pemakaian: dilakukan kapan dan apakah hasilnya tercatat?",
+   "pertanyaan_singkat": "Warm-up / kalibrasi otomatis sebelum pemakaian — biasanya dilakukan kapan, dan hasilnya tercatat atau tidak?",
    "tipe": "pilihan",
    "pilihan_jawaban": "☐ Setiap hari sebelum pelayanan ☐ Hanya setelah alat mati lama ☐ Otomatis oleh sistem ☐ T • Tercatat: ☐ Y ☐ T",
    "bukti_diminta": "Log harian / demonstrasi operator"
@@ -216,9 +216,9 @@
    "kode_blanko": "H6",
    "bagian": "H",
    "subbagian": null,
-   "judul_bagian": "Bagian H — Protokol klinis dan optimasi (ALADAIP)",
+   "judul_bagian": "Bagian H — Protokol klinis dan optimasi (ALADAIP — As Low As Diagnostically Acceptable, Image quality and Patient dose)",
    "pertanyaan": "Apakah pengaturan eksposi disesuaikan dengan indikasi serta ukuran/usia pasien — termasuk protokol khusus anak?",
-   "pertanyaan_singkat": "Apakah parameter eksposi disesuaikan dengan indikasi dan ukuran / usia pasien (termasuk protokol anak…",
+   "pertanyaan_singkat": "Apakah pengaturan eksposi disesuaikan dengan indikasi serta ukuran/usia pasien — termasuk protokol khusus anak?",
    "tipe": "pilihan",
    "pilihan_jawaban": "Disesuaikan: ☐ Selalu ☐ Kadang-kadang ☐ T • Protokol anak tersendiri: ☐ Y ☐ T",
    "bukti_diminta": "Daftar protokol pada konsol"
@@ -230,7 +230,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian I — Dokumentasi, penilaian hasil, dan tindak lanjut",
    "pertanyaan": "Kalau ada hasil yang tidak sesuai — apakah dilaporkan ke kepala instalasi, dicatat di formulir ketidaksesuaian, dan tindakan korektifnya didokumentasikan?",
-   "pertanyaan_singkat": "Apakah hasil yang tidak sesuai dilaporkan ke kepala instalasi, dicatat dalam formulir ketidaksesuaian, dan…",
+   "pertanyaan_singkat": "Kalau ada hasil yang tidak sesuai — apakah dilaporkan ke kepala instalasi, dicatat di formulir ketidaksesuaian, dan tindakan korektifnya didokumentasikan?",
    "tipe": "pilihan",
    "pilihan_jawaban": "Dilaporkan: ☐ Y ☐ T • Formulir ketidaksesuaian: ☐ Y ☐ T • Tindakan korektif terdokumentasi: ☐ Y ☐ T",
    "bukti_diminta": "Formulir ketidaksesuaian terakhir"
@@ -241,8 +241,8 @@
    "bagian": "J",
    "subbagian": null,
    "judul_bagian": "Bagian J — Kendala, sumber daya, dan kebutuhan perbaikan",
-   "pertanyaan": "Menurut Anda, apa kendala utama pelaksanaan QA/QC CBCT di sini? Urutkan 3 teratas, dan jelaskan kendala nomor satu dengan kalimat lengkap.",
-   "pertanyaan_singkat": "Apa kendala utama pelaksanaan QA/QC CBCT di fasilitas ini? Urutkan 3 kendala teratas dan jelaskan kendala…",
+   "pertanyaan": "Menurut Bapak/Ibu, apa kendala utama pelaksanaan QA/QC CBCT di fasilitas ini? Urutkan 3 teratas, dan jelaskan kendala nomor satu dengan kalimat lengkap.",
+   "pertanyaan_singkat": "Menurut Bapak/Ibu, apa kendala utama pelaksanaan QA/QC CBCT di fasilitas ini? Urutkan 3 teratas, dan jelaskan kendala nomor satu dengan kalimat lengkap.",
    "tipe": "isian",
    "pilihan_jawaban": "Urutan: 1) ………… 2) ………… 3) ………… • Penjelasan kendala utama: …………………………………………",
    "bukti_diminta": "—"
@@ -254,7 +254,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian J — Kendala, sumber daya, dan kebutuhan perbaikan",
    "pertanyaan": "Bagaimana ketersediaan sarana penunjang — phantom dan alat ukur — di fasilitas ini?",
-   "pertanyaan_singkat": "Ketersediaan sarana: phantom dan alat ukur",
+   "pertanyaan_singkat": "Bagaimana ketersediaan sarana penunjang — phantom dan alat ukur — di fasilitas ini?",
    "tipe": "isian",
    "pilihan_jawaban": "Phantom: ☐ Tersedia ☐ Tidak tersedia • Alat ukur: ☐ Tersedia & terkalibrasi ☐ Tersedia, tidak terkalibrasi ☐ Tidak tersedia",
    "bukti_diminta": "Inventaris sarana QC"
@@ -266,7 +266,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",
    "pertanyaan": "Kalau rancangan SOP, protokol, dan checklist QA/QC CBCT dari penelitian ini jadi, apakah fasilitas bersedia menggunakannya?",
-   "pertanyaan_singkat": "Apakah fasilitas bersedia menggunakan rancangan SOP, protokol, dan checklist QA/QC CBCT yang dikembangkan…",
+   "pertanyaan_singkat": "Kalau rancangan SOP, protokol, dan checklist QA/QC CBCT dari penelitian ini jadi, apakah fasilitas bersedia menggunakannya?",
    "tipe": "isian",
    "pilihan_jawaban": "☐ Bersedia penuh ☐ Bersedia sebagai bahan penyesuaian SOP internal ☐ Belum dapat memutuskan ☐ Tidak bersedia — alasan: …………",
    "bukti_diminta": "—"
@@ -278,7 +278,7 @@
    "subbagian": null,
    "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",
    "pertanyaan": "Bagian rancangan mana yang paling diharapkan fasilitas? (centang maksimal 3)",
-   "pertanyaan_singkat": "Bagian rancangan mana yang paling diharapkan fasilitas? (beri ✓ maksimal 3)",
+   "pertanyaan_singkat": "Bagian rancangan mana yang paling diharapkan fasilitas? (centang maksimal 3)",
    "tipe": "pilihan_ganda",
    "pilihan_jawaban": "☐ Jadwal pengujian berkala ☐ Checklist harian ☐ Protokol uji phantom & penetapan baseline ☐ Formulir mutu citra & log artefak ☐ Formulir repeat/reject ☐ Alur tindak lanjut & stop-use",
    "bukti_diminta": "—"
@@ -290,9 +290,9 @@
    "subbagian": null,
    "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",
    "pertanyaan": "Pernyataan kebenaran: jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.",
-   "pertanyaan_singkat": "Pernyataan kebenaran: jawaban dalam kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang…",
+   "pertanyaan_singkat": "Pernyataan kebenaran: jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.",
    "tipe": "isian",
-   "pilihan_jawaban": "Nama & tanda tangan responden utama: ………………………… • Jabatan: ………… • Tanggal: …………",
+   "pilihan_jawaban": "Nama lengkap (sebagai tanda tangan digital): ………………………… • Jabatan: ………… • Tanggal: …………",
    "bukti_diminta": "★ Formulir bertanda tangan disimpan sebagai bukti instrumen"
   }
  ]

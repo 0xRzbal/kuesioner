@@ -34,7 +34,7 @@ assert(E.P(c10).filter((g) => g.k === 'fld').length === 3, 'C-10 terurai menjadi
 assert(/Urutan 1: Isi uji/.test(E.fmt(c10, fullAnswer(c10))), 'C-10 terformat sebagai urutan');
 const b1 = E.BY['B-01'];
 assert(E.P(b1).length === 2 && !E.complete(b1, { g0: [0] }), 'B-01 wajib dua bagian (skala saja tidak cukup)');
-assert(E.expand('Y, rutin') === 'Ya, rutin' && E.expand('BDD') === 'Belum Dapat Ditentukan' && E.expand('TB') === 'Tidak Berlaku', 'expand() singkatan benar');
+assert(E.expand('Y, rutin') === 'Ya, rutin' && E.expand('BDD') === 'Belum dapat ditentukan' && E.expand('TB') === 'Tidak berlaku', 'expand() singkatan benar (sentence case)');
 const k2 = E.BY['K-02'];
 assert(E.P(k2)[0].multi === true, 'K-02 pilihan ganda');
 

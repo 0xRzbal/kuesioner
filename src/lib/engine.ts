@@ -69,13 +69,13 @@ export function P(it: Butir): Group[] {
   return (PC[it.kode] = gs);
 }
 
-/** Perluas singkatan kode menjadi teks terbaca: Y→Ya, T→Tidak, BDD→Belum Dapat Ditentukan, TB→Tidak Berlaku. */
+/** Perluas singkatan kode menjadi teks terbaca: Y→Ya, T→Tidak, BDD→Belum dapat ditentukan, TB→Tidak berlaku. */
 export function expand(s: string): string {
   if (!s) return s; const t = s.trim();
-  const ex: Record<string, string> = { Y: 'Ya', T: 'Tidak', BDD: 'Belum Dapat Ditentukan', TB: 'Tidak Berlaku', PPR: 'Petugas Proteksi Radiasi (PPR)', 'M-1': 'Kelas M-1', 'M-2': 'Kelas M-2', 'M-3': 'Kelas M-3' };
+  const ex: Record<string, string> = { Y: 'Ya', T: 'Tidak', BDD: 'Belum dapat ditentukan', TB: 'Tidak berlaku', PPR: 'Petugas Proteksi Radiasi (PPR)', 'M-1': 'Kelas M-1', 'M-2': 'Kelas M-2', 'M-3': 'Kelas M-3' };
   if (ex[t] !== undefined) return s.replace(t, ex[t]);
   return s.replace(/^Y(?=[,\-—–:])/, 'Ya').replace(/^T(?=[,\-—–:])/, 'Tidak')
-    .replace(/^BDD(?=[\s\-—–:])/, 'Belum Dapat Ditentukan').replace(/^TB(?=[\s\-—–:])/, 'Tidak Berlaku');
+    .replace(/^BDD(?=[\s\-—–:])/, 'Belum dapat ditentukan').replace(/^TB(?=[\s\-—–:])/, 'Tidak berlaku');
 }
 
 export type AnswerState = Record<string, any>;
@@ -107,9 +107,10 @@ export function complete(it: Butir, st: AnswerState): boolean {
   });
 }
 export function hint(it: Butir): string {
-  if (it.kode === 'B-01') return 'Pertanyaan ini terdiri dari dua bagian dan keduanya wajib dijawab. Skala 1–5: 1 = tidak pernah, 2 = jarang, 3 = kadang-kadang, 4 = sering, 5 = selalu (setiap hari). Di bawah skala, pilih pula status pencatatannya.';
+  if (it.kode === 'B-01') return 'Pertanyaan ini terdiri dari dua bagian — mohon jawab keduanya. Skala 1–5: 1 = tidak pernah, 2 = jarang, 3 = kadang-kadang, 4 = sering, 5 = selalu (setiap hari). Di bawah skala, pilih pula status pencatatannya. Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
+  if (it.kode === 'J-01') return 'Pilih atau ketik kendala dari daftar baku berikut: ketersediaan phantom CBCT; ketersediaan alat ukur/dosimeter; anggaran pengujian; SDM (fisika medik/radiografer terlatih); waktu/jadwal pelayanan yang padat; dukungan manajemen; belum ada SOP/panduan nasional. Bila kendalanya lain, ketik langsung pada kolomnya.';
   const p = P(it);
-  if (p.filter((x) => x.k === 'opt' || x.k === 'fld').length > 1) return 'Pertanyaan ini terdiri dari beberapa bagian — jawab semuanya sebelum melanjutkan.';
+  if (p.filter((x) => x.k === 'opt' || x.k === 'fld').length > 1) return 'Pertanyaan ini terdiri dari beberapa bagian — mohon jawab semuanya. Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
   const g = p.find((x) => x.k === 'opt');
   return g && p.length === 1 ? ((g as any).multi ? 'Boleh pilih lebih dari satu.' : 'Pilih satu jawaban.') : '';
 }
