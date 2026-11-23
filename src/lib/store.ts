@@ -4,17 +4,18 @@ import { DRAFT_KEY } from './sheets';
 
 export interface AppState {
   i: number; fac: string;
-  who: { nama: string; jabatan: string; kontak: string };
+  who: { nama: string; jabatan: string; kontak: string; alat: string; tahunAlat: string };
   s: Record<string, Record<string, any>>;
   ev: Record<string, string>;
   k4agree: boolean;
+  consent: boolean;
 }
-export const emptyState = (): AppState => ({ i: 0, fac: '', who: { nama: '', jabatan: '', kontak: '' }, s: {}, ev: {}, k4agree: false });
+export const emptyState = (): AppState => ({ i: 0, fac: '', who: { nama: '', jabatan: '', kontak: '', alat: '', tahunAlat: '' }, s: {}, ev: {}, k4agree: false, consent: false });
 
 function load(): AppState {
   try {
     const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
-    if (d && d.s) return Object.assign(emptyState(), d);
+    if (d && d.s) { const m = Object.assign(emptyState(), d); m.who = Object.assign(emptyState().who, d.who || {}); return m; }
   } catch { /* abaikan */ }
   return emptyState();
 }

@@ -8,9 +8,10 @@
   <h1 style="font-size:clamp(22px,5vw,30px)">{D.judul}</h1>
   <p class="lead">{CONFIG.tujuan}</p>
   <div class="legend">
-    <b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum Dapat Ditentukan &nbsp;<b>TB</b>Tidak Berlaku &nbsp;<b>★</b>Bukti utama yang diminta ditunjukkan kepada peneliti
+    <b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum dapat ditentukan &nbsp;<b>TB</b>Tidak berlaku &nbsp;<b>★</b>Bukti utama yang diminta ditunjukkan kepada peneliti
   </div>
-  <p class="note">Halaman ini menampilkan seluruh pertanyaan apa adanya untuk dibaca dan ditelaah sebelum mengisi.</p>
+  <p class="note">Halaman ini menampilkan seluruh pertanyaan apa adanya — teks lengkap beserta pilihan jawabannya — untuk dibaca dan ditelaah sebelum mengisi.</p>
+  <p class="note">Nomor butir tampak tidak berurutan (mis. Bagian B hanya memiliki B1 dan B4; Bagian C memiliki C1, C2, C7, C8, C10, dan C12) karena kodenya mengikuti bank instrumen/dokumen induk yang sama di semua fasilitas — bukan ada pertanyaan yang hilang.</p>
 </div>
 
 {#each SEC as x}

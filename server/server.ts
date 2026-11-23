@@ -24,10 +24,10 @@ function renderDocument(): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom</title>
-<meta name="description" content="Kuesioner penelitian QA/QC CBCT — Alternatif tanpa Uji Phantom. 24 butir terpilih dalam 12 bagian untuk fasilitas RSDK dan RSGM.">
-<meta property="og:title" content="Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom">
-<meta property="og:description" content="Kuesioner penelitian: 24 butir, 12 bagian, estimasi 10–20 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
+<title>Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral</title>
+<meta name="description" content="Kuesioner penelitian: Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral. 24 butir terpilih dalam 12 bagian untuk fasilitas RSDK dan RSGM.">
+<meta property="og:title" content="Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral">
+<meta property="og:description" content="Kuesioner penelitian: 24 butir, 12 bagian, estimasi 10–15 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#001f54">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

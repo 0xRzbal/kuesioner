@@ -9,6 +9,15 @@
   $: buktiLabel = (it.bukti_diminta || '').replace(/^★\s*/, '');
   $: buktiUtama = /^★/.test(it.bukti_diminta || '');
   const sel = (gi: number) => ans['g' + gi] || [];
+  // Hint format isian per butir (E1) & daftar baku kendala J1 (datalist — teks bebas tetap boleh).
+  const KENDALA_J1 = ['Ketersediaan phantom CBCT', 'Ketersediaan alat ukur/dosimeter', 'Anggaran pengujian', 'SDM (fisika medik/radiografer terlatih)', 'Waktu/jadwal pelayanan yang padat', 'Dukungan manajemen', 'Belum ada SOP/panduan nasional', 'Lainnya (tulis pada kolom penjelasan)'];
+  function fldPh(g: any, f: any): string {
+    if (it.kode === 'E-01') {
+      if (g.lab === 'Terakhir') return 'mis. Maret 2025 / 2024';
+      if (g.lab === 'Pilihan kVp') return 'mis. 60, 70, 80, 90 kVp';
+    }
+    return f.p || '';
+  }
 </script>
 
 <div class="card">
@@ -30,11 +39,14 @@
           <label class="fl">
             <span>{f.l || g.lab || 'Isi'}</span>
             <span class="iw">
-              <input class="in" value={ans[`f${gi}.${j}`] || ''} placeholder={f.p || ''} on:input={(e) => setField(it.kode, `f${gi}.${j}`, e.currentTarget.value)}>
+              <input class="in" type={it.kode === 'K-04' && g.lab === 'Tanggal' ? 'date' : 'text'} list={it.kode === 'J-01' && gi === 0 ? 'kendala-j1' : undefined} value={ans[`f${gi}.${j}`] || ''} placeholder={fldPh(g, f)} on:input={(e) => setField(it.kode, `f${gi}.${j}`, e.currentTarget.value)}>
               {#if f.u}<i>{f.u}</i>{/if}
             </span>
           </label>
         {/each}
+        {#if it.kode === 'J-01' && gi === 0}
+          <datalist id="kendala-j1">{#each KENDALA_J1 as k}<option value={k}></option>{/each}</datalist>
+        {/if}
       </div>
     {:else}
       {#if g.lab}<div class="gl">{g.lab}</div>{/if}
@@ -67,8 +79,8 @@
   {#if it.bukti_diminta && it.bukti_diminta !== '—'}
     <details open>
       <summary>Bukti yang diminta: {buktiLabel}{buktiUtama ? ' (bukti utama)' : ''}</summary>
-      <p class="hint" style="margin:8px 0">Bukti ditunjukkan kepada peneliti saat pengisian. Tuliskan nomor/judul dokumen atau keterangan buktinya di sini; boleh dikosongkan bila bukti tidak tersedia.</p>
-      <input class="in" value={ev} placeholder="Nomor dokumen / keterangan bukti (opsional)" on:input={(e) => setEvidence(it.kode, e.currentTarget.value)}>
+      <p class="hint" style="margin:8px 0">Bukti ditunjukkan kepada peneliti saat pengisian. Tuliskan nomor/judul dokumen atau keterangan buktinya di sini; isi “-” bila bukti memang tidak tersedia.</p>
+      <input class="in" value={ev} placeholder="Nomor dokumen / keterangan bukti (isi '-' bila tidak tersedia)" on:input={(e) => setEvidence(it.kode, e.currentTarget.value)}>
     </details>
   {/if}
 
