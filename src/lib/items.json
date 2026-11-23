@@ -1,6 +1,6 @@
 {
- "judul": "Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom",
- "jumlah_butir": 24,
+ "judul": "Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral",
+ "jumlah_butir": 25,
  "catatan_kode": "kode = kode normalisasi untuk kolom spreadsheet (contoh 0-01). kode_blanko = kode persis di dokumen Word (contoh 0.1). 0.1 = 0-01, A1 = A-01, D7 = D-07.",
  "fasilitas": [
   "RSDK",
@@ -92,18 +92,6 @@
    "bukti_diminta": "★ Foto phantom / inventaris alat QC"
   },
   {
-   "kode": "C-02",
-   "kode_blanko": "C2",
-   "bagian": "C",
-   "subbagian": null,
-   "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
-   "pertanyaan": "Untuk kepentingan penelitian ini, adakah phantom CBCT yang bisa diakses dari institusi pendidikan atau pihak lain?",
-   "pertanyaan_singkat": "Apakah peneliti memiliki / dapat mengakses phantom CBCT dari institusi pendidikan atau pihak lain selama…",
-   "tipe": "pilihan",
-   "pilihan_jawaban": "☐ Y — sumber: ………… ☐ T ☐ Sedang diupayakan: …………",
-   "bukti_diminta": "Surat peminjaman bila ada"
-  },
-  {
    "kode": "C-07",
    "kode_blanko": "C7",
    "bagian": "C",
@@ -121,23 +109,11 @@
    "bagian": "C",
    "subbagian": null,
    "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
-   "pertanyaan": "Saat commissioning, kalibrasi, atau servis, adakah vendor/lembaga penguji yang pernah membawa phantom sendiri ke sini?",
-   "pertanyaan_singkat": "Apakah vendor / lembaga penguji pernah membawa phantom sendiri saat commissioning, kalibrasi, atau servis…",
-   "tipe": "pilihan",
-   "pilihan_jawaban": "☐ Y — kapan & oleh siapa: ………… ☐ T ☐ BDD",
-   "bukti_diminta": "Laporan commissioning / servis"
-  },
-  {
-   "kode": "C-10",
-   "kode_blanko": "C10",
-   "bagian": "C",
-   "subbagian": null,
-   "judul_bagian": "Bagian C — Phantom: ketersediaan, riwayat, dan alternatif yang sah tanpa phantom",
-   "pertanyaan": "Soal ketiadaan phantom, kendala apa yang paling terasa di fasilitas ini? Urutkan 3 teratas (angka 1–3).",
-   "pertanyaan_singkat": "Kendala utama ketiadaan phantom di fasilitas ini (urutkan 3 teratas dengan angka 1–3)",
-   "tipe": "isian",
-   "pilihan_jawaban": "Urutan 1: ………… • Urutan 2: ………… • Urutan 3: …………",
-   "bukti_diminta": "—"
+   "pertanyaan": "Sepengetahuan Bapak/Ibu, pada tahap apa penggunaan phantom untuk menguji mode CBCT tiga dimensi pernah tercatat pada unit ini?",
+   "pertanyaan_singkat": "Pada tahap apa penggunaan phantom untuk uji mode CBCT 3D pernah tercatat di unit ini? Boleh memilih lebih dari satu tahap.",
+   "tipe": "pilihan_ganda",
+   "pilihan_jawaban": "Boleh memilih lebih dari satu tahap • ☐ saat instalasi atau uji awal ☐ saat uji berkala ☐ setelah perbaikan ☐ belum menemukan catatannya ☐ tidak tahu • Tahun / nama laporan (opsional): ……",
+   "bukti_diminta": "Laporan uji / catatan servis yang menyebut penggunaan phantom"
   },
   {
    "kode": "C-12",
@@ -258,6 +234,42 @@
    "tipe": "isian",
    "pilihan_jawaban": "Phantom: ☐ Tersedia ☐ Tidak tersedia • Alat ukur: ☐ Tersedia & terkalibrasi ☐ Tersedia, tidak terkalibrasi ☐ Tidak tersedia",
    "bukti_diminta": "Inventaris sarana QC"
+  },
+  {
+   "kode": "L-01",
+   "kode_blanko": "L1",
+   "bagian": "L",
+   "subbagian": null,
+   "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
+   "pertanyaan": "Aturan atau regulasi apa yang Bapak/Ibu ketahui yang mengatur pemakaian pesawat CBCT di fasilitas ini — apakah ada yang tertulis, atau hanya manual pabrikan?",
+   "pertanyaan_singkat": "Regulasi apa yang Bapak/Ibu ketahui yang mengatur pemakaian pesawat CBCT?",
+   "tipe": "pilihan",
+   "pilihan_jawaban": "☐ Permenkes No. 4/2016 ☐ Peraturan BAPETEN tentang pengujian alat ☐ Hanya manual pabrikan ☐ Belum mengetahui",
+   "bukti_diminta": "Dokumen regulasi atau keterangan aturan yang diketahui"
+  },
+  {
+   "kode": "L-03",
+   "kode_blanko": "L2",
+   "bagian": "L",
+   "subbagian": null,
+   "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
+   "pertanyaan": "Menurut Bapak/Ibu, seharusnya mode CBCT 3D punya standar QA/QC nasional tersendiri yang bisa dipakai semua fasilitas?",
+   "pertanyaan_singkat": "Haruskah mode CBCT 3D punya standar QA/QC nasional tersendiri?",
+   "tipe": "pilihan",
+   "pilihan_jawaban": "☐ Sangat harus ☐ Harus ☐ Netral ☐ Tidak perlu ☐ Sangat tidak perlu",
+   "bukti_diminta": "—"
+  },
+  {
+   "kode": "L-04",
+   "kode_blanko": "L3",
+   "bagian": "L",
+   "subbagian": null,
+   "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
+   "pertanyaan": "Kalau standar nasional sudah tersedia, apa yang paling dulu dibutuhkan fasilitas ini supaya bisa langsung menerapkannya?",
+   "pertanyaan_singkat": "Apa yang paling dulu dibutuhkan fasilitas untuk menerapkan standar?",
+   "tipe": "pilihan",
+   "pilihan_jawaban": "☐ Phantom CBCT ☐ SDM fisikamedik ☐ Anggaran dan pos pengujian alat ☐ Pelatihan SDM ☐ Semua hal tersebut dibutuhkan",
+   "bukti_diminta": "—"
   },
   {
    "kode": "K-01",

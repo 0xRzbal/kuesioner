@@ -1,6 +1,6 @@
 <script lang="ts">
   import { CONFIG } from '../lib/config';
-  import { D } from '../lib/engine';
+  import { D, IT, SEC } from '../lib/engine';
   import { state } from '../lib/store';
   export let onShowAll: () => void;
   function pick(f: string) { $state.fac = f; }
@@ -11,9 +11,9 @@
   <h1>{D.judul}</h1>
   <p class="lead">{CONFIG.tujuan}</p>
   <div class="hero-meta">
-    <div><b>24</b><span>Butir pertanyaan</span></div>
-    <div><b>12</b><span>Bagian (0, A–K)</span></div>
-    <div><b>10–20</b><span>Menit pengisian</span></div>
+    <div><b>{IT.length}</b><span>Butir pertanyaan</span></div>
+    <div><b>{SEC.length}</b><span>Bagian</span></div>
+    <div><b>8–12</b><span>Menit pengisian</span></div>
     <div><b>2</b><span>Fasilitas (RSDK & RSGM)</span></div>
   </div>
 </div>
@@ -31,16 +31,12 @@
 <div class="card" style="margin-top:14px">
 
   <div class="note">
-    <b>Petunjuk pengisian.</b> Kuesioner terdiri dari 24 butir terpilih dalam 12 bagian, dijawab satu
-    per satu; estimasi waktu 10–20 menit. Butir diambil dari bank instrumen penelitian dan
+    <b>Petunjuk pengisian.</b> Formulir terdiri dari 25 butir klarifikasi dalam 13 bagian, dijawab satu
+    per satu; estimasi waktu 8–12 menit. Formulir ini tidak meminta angka hasil uji — angka tetap diambil dari laporan hasil uji (LHU) di fasilitas; butir di sini dipakai untuk mengklarifikasi hal yang belum terjawab dalam wawancara atau belum jelas pada dokumen. Butir diambil dari bank instrumen penelitian dan
     kodenya mengikuti dokumen induk, sehingga penomoran tampak tidak berurutan — bukan ada
     pertanyaan yang hilang. Jawaban tersimpan otomatis di perangkat ini dan dapat dilanjutkan
     kemudian. Pada sejumlah butir diminta bukti pendukung: bukti ditunjukkan kepada peneliti saat
     pengisian dan nomor/keterangannya dicatat pada kolom yang disediakan.
-  </div>
-
-  <div class="legend">
-    <b>Y</b>Ya &nbsp;<b>T</b>Tidak &nbsp;<b>BDD</b>Belum Dapat Ditentukan &nbsp;<b>TB</b>Tidak Berlaku &nbsp;<b>★</b>Bukti utama
   </div>
 
   <p class="note">

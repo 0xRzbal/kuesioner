@@ -14,8 +14,6 @@ const DIST = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 const PORT = Number(process.env.PORT || 8080);
 const HOST = process.env.HOST || '127.0.0.1';
 
-const FAVICON_SVG = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='#001f54'/><rect y='58' width='64' height='6' fill='#ffd600'/><text x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'>CB</text></svg>`;
-
 // Satu-satunya "HTML" di proyek ini: string yang dirakit kode TypeScript
 // saat request datang — bukan file, tidak ada di disk sebagai .html.
 function renderDocument(): string {
@@ -24,13 +22,15 @@ function renderDocument(): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom</title>
-<meta name="description" content="Kuesioner penelitian QA/QC CBCT — Alternatif tanpa Uji Phantom. 24 butir terpilih dalam 12 bagian untuk fasilitas RSDK dan RSGM.">
-<meta property="og:title" content="Kuesioner QA/QC CBCT — Alternatif tanpa Uji Phantom">
-<meta property="og:description" content="Kuesioner penelitian: 24 butir, 12 bagian, estimasi 10–20 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
+<title>Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral</title>
+<meta name="description" content="Formulir klarifikasi pelaksanaan QA/QC CBCT ekstraoral. 25 butir dalam 13 bagian untuk fasilitas RSDK dan RSGM.">
+<meta property="og:title" content="Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral">
+<meta property="og:description" content="Formulir klarifikasi: 25 butir, 13 bagian, estimasi 8–12 menit. Baca pengantar dan seluruh pertanyaan sebelum mengisi.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#001f54">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,9 +43,14 @@ function renderDocument(): string {
 </html>`;
 }
 
-const ASSETS: Record<string, { file: string; type: string }> = {
+const ASSETS: Record<string, { file: string; type: string; cache?: boolean }> = {
   '/app.js': { file: 'app.js', type: 'text/javascript; charset=utf-8' },
-  '/app.css': { file: 'app.css', type: 'text/css; charset=utf-8' }
+  '/app.css': { file: 'app.css', type: 'text/css; charset=utf-8' },
+  '/app-peneliti.jpg': { file: 'app-peneliti.jpg', type: 'image/jpeg', cache: true },
+  '/favicon.ico': { file: 'favicon.ico', type: 'image/x-icon', cache: true },
+  '/favicon-32.png': { file: 'favicon-32.png', type: 'image/png', cache: true },
+  '/favicon-64.png': { file: 'favicon-64.png', type: 'image/png', cache: true },
+  '/apple-touch-icon.png': { file: 'apple-touch-icon.png', type: 'image/png', cache: true }
 };
 
 async function handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
@@ -53,16 +58,11 @@ async function handle(req: IncomingMessage, res: ServerResponse): Promise<void> 
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'same-origin');
 
-  if (path === '/favicon.svg') {
-    res.writeHead(200, { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'public, max-age=86400' });
-    res.end(FAVICON_SVG);
-    return;
-  }
   const asset = ASSETS[path];
   if (asset) {
     try {
       const body = await readFile(join(DIST, asset.file));
-      res.writeHead(200, { 'Content-Type': asset.type, 'Cache-Control': 'no-cache' });
+      res.writeHead(200, { 'Content-Type': asset.type, 'Cache-Control': asset.cache ? 'public, max-age=86400' : 'no-cache' });
       res.end(body);
     } catch {
       res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });

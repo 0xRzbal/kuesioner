@@ -11,3 +11,13 @@
 - Institusi: Prodi Imaging Diagnostik - Pascasarjana - Poltekkes Kemenkes Semarang
 - Pembimbing: Dr. Gatot Murti Wibowo, S.Pd., M.Sc. (MedTech); Yeti Kartikasari, S.T., M.Kes
 - Kontak: rhasiana11@gmail.com 089668070696
+
+`kuesioner-v5-deploy-ios-25butir.zip` is the current live bundle. It contains the iOS/Apple-native theme, the researcher photo as header logo and favicons, and the 25-item / 13-section instrument ("Klarifikasi Pelaksanaan QA/QC CBCT Ekstraoral"). Deploy steps:
+
+```
+unzip kuesioner-v5-deploy-ios-25butir.zip -d /var/www/kuesioner-v3/
+chmod 644 /var/www/kuesioner-v3/dist/*
+chown root:www-data /var/www/kuesioner-v3/dist/*
+systemctl restart kuesioner.service
+```
+

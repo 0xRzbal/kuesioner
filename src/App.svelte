@@ -85,6 +85,10 @@
   async function retry() { await retryPending(); result = result; toast('Pengiriman ulang diproses. Periksa status antrean pada halaman ini.'); }
 
   onMount(() => {
+    // Proteksi konten: blokir menu klik-kanan & drag gaman di seluruh halaman
+    const noCtx = (e: Event) => e.preventDefault();
+    document.addEventListener('contextmenu', noCtx);
+
     try {
       const sb = JSON.parse(localStorage.getItem(SUBMITTED_KEY) || 'null');
       if (sb && sb.at) {
@@ -112,9 +116,9 @@
 
 <header class="top">
   <div class="th">
-    <div class="logo">CB</div>
-    <div class="tl">Kuesioner QA/QC CBCT<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
-    <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>☰</button>
+    <img class="logo" src="/app-peneliti.jpg" alt="Peneliti" />
+    <div class="tl">Klarifikasi QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
+    <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>&#9776;</button>
   </div>
   {#if !showAll && (step.t === 'q' || step.t === 'intro')}
     <div class="sgs" role="navigation" aria-label="Kemajuan per bagian">
@@ -149,10 +153,9 @@
 <div class="bar">
   <div class="bi">
     {#if showAll}
-      <button class="btn bk" aria-label="Kembali" on:click={() => (showAll = false)}>←</button>
-      <button class="btn" on:click={() => (showAll = false)}>Kembali ke pengisian</button>
+      <button class="btn bk" aria-label="Kembali" on:click={() => (showAll = false)}>&#8249;</button>
     {:else}
-      <button class="btn bk" aria-label="Kembali" disabled={$state.i === 0} on:click={() => go($state.i - 1)}>←</button>
+      <button class="btn bk" aria-label="Kembali" disabled={$state.i === 0} on:click={() => go($state.i - 1)}>&#8249;</button>
       {#if step.t === 'q' && !complete(step.it, $state.s[step.it.kode] || {})}
         <button class="btn g" on:click={() => go($state.i + 1)}>Lewati</button>
       {/if}
@@ -164,7 +167,7 @@
         {#if result && result.ok}
           <button class="btn p" on:click={resetAll}>Isi kuesioner baru</button>
         {:else}
-          <button class="btn p" id="send" disabled={sending} on:click={kirim}>{sending ? 'Mengirim…' : 'Kirim Jawaban'}</button>
+          <button class="btn p" id="send" disabled={sending || totalDone < IT.length} on:click={kirim}>{sending ? 'Mengirim…' : (totalDone < IT.length ? `Lengkapi ${IT.length - totalDone} butir` : 'Kirim Jawaban')}</button>
         {/if}
       {:else}
         <button class="btn p" on:click={next}>Lanjut →</button>
@@ -182,8 +185,8 @@
       <b>{n === x.items.length ? '✓' : x.b}</b><span>{x.t}</span><small>{n}/{x.items.length}</small>
     </button>
   {/each}
-  <button class="di" on:click={() => go(STEPS.length - 1)}><b>➤</b><span>Tinjau &amp; kirim</span></button>
-  <button class="di" on:click={() => { showAll = true; drawerOpen = false; window.scrollTo({ top: 0 }); }}><b>≡</b><span>Baca semua pertanyaan</span></button>
+  <button class="di" on:click={() => go(STEPS.length - 1)}><b>&#9654;</b><span>Tinjau &amp; kirim</span></button>
+  <button class="di" on:click={() => { showAll = true; drawerOpen = false; window.scrollTo({ top: 0 }); }}><b>&#8801;</b><span>Baca semua pertanyaan</span></button>
 </aside>
 
 <div class="toast" class:on={!!$toastMsg}>{$toastMsg}</div>

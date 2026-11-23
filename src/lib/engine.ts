@@ -102,7 +102,10 @@ export function complete(it: Butir, st: AnswerState): boolean {
   if (!fmt(it, st)) return false;
   return P(it).every((g, gi) => {
     if (g.k === 'opt') return (st['g' + gi] || []).length > 0;
-    if (g.k === 'fld') return g.fl.some((f, j) => (st[`f${gi}.${j}`] || '').trim());
+    if (g.k === 'fld') {
+      if (/opsional/i.test(g.lab)) return true;
+      return g.fl.some((f, j) => (st[`f${gi}.${j}`] || '').trim());
+    }
     return (st.a || '').trim().length > 0;
   });
 }
