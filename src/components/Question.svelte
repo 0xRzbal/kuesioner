@@ -12,10 +12,7 @@
   // Hint format isian per butir (E1) & daftar baku kendala J1 (datalist — teks bebas tetap boleh).
   const KENDALA_J1 = ['Ketersediaan phantom CBCT', 'Ketersediaan alat ukur/dosimeter', 'Anggaran pengujian', 'SDM (fisika medik/radiografer terlatih)', 'Waktu/jadwal pelayanan yang padat', 'Dukungan manajemen', 'Belum ada SOP/panduan nasional', 'Lainnya (tulis pada kolom penjelasan)'];
   function fldPh(g: any, f: any): string {
-    if (it.kode === 'E-01') {
-      if (g.lab === 'Terakhir') return 'mis. Maret 2025 / 2024';
-      if (g.lab === 'Pilihan kVp') return 'mis. 60, 70, 80, 90 kVp';
-    }
+    if (it.kode === 'E-01' && /tahun/i.test(g.lab || '')) return 'mis. 2024 / LHU Radiologi Agustus 2023';
     return f.p || '';
   }
 </script>

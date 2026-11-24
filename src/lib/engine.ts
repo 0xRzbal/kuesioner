@@ -114,6 +114,11 @@ export function hint(it: Butir): string {
   if (it.kode === 'J-01') return 'Pilih atau ketik kendala dari daftar baku berikut: ketersediaan phantom CBCT; ketersediaan alat ukur/dosimeter; anggaran pengujian; SDM (fisika medik/radiografer terlatih); waktu/jadwal pelayanan yang padat; dukungan manajemen; belum ada SOP/panduan nasional. Bila kendalanya lain, ketik langsung pada kolomnya.';
   const p = P(it);
   if (p.filter((x) => x.k === 'opt' || x.k === 'fld').length > 1) {
+    const opsional = p.filter((x) => x.k === 'fld').every((x: any) => /opsional/i.test(x.lab || ''));
+    if (opsional) {
+      const multi = p.some((x: any) => x.k === 'opt' && x.multi);
+      return (multi ? 'Boleh pilih lebih dari satu. ' : 'Pilih satu jawaban. ') + 'Kolom bertanda opsional boleh dikosongkan.';
+    }
     const dasar = 'Pertanyaan ini terdiri dari beberapa bagian — mohon jawab semuanya.';
     return it.kode === 'K-04' ? dasar : dasar + ' Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
   }

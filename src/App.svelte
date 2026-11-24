@@ -128,7 +128,7 @@
 <header class="top">
   <div class="th">
     <img class="logo" src="/app-peneliti.jpg" alt="Peneliti" role="button" tabindex="0" title="Kembali ke halaman awal" on:click={() => go(0)} />
-    <div class="tl" role="button" tabindex="0" title="Kembali ke halaman awal" style="cursor:pointer" on:click={() => go(0)}>Klarifikasi QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
+    <div class="tl" role="button" tabindex="0" title="Kembali ke halaman awal" style="cursor:pointer" on:click={() => go(0)}>QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
     <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>&#9776;</button>
   </div>
   {#if !showAll && (step.t === 'q' || step.t === 'intro')}
