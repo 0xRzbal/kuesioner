@@ -54,6 +54,17 @@
         error = 'Pertanyaan ini belum dijawab lengkap. Mohon isi terlebih dahulu, atau tekan “Lewati” bila memang belum dapat dijawab saat ini.'; return;
       }
     }
+    // Di butir terakhir: kalau masih ada butir kosong, jangan langsung ke Tinjau —
+    // arahkan ke butir kosong pertama supaya tidak ada yang terlewat.
+    if (step.t === 'q' && STEPS[$state.i + 1] && STEPS[$state.i + 1].t === 'review') {
+      const miss = IT.filter((it) => !complete(it, $state.s[it.kode] || {}));
+      if (miss.length) {
+        const nomor = miss.slice(0, 4).map((it) => it.kode_blanko || it.kode).join(', ');
+        toast(`Masih ada ${miss.length} butir kosong (${nomor}${miss.length > 4 ? ', …' : ''}) — diarahkan ke butir ${miss[0].kode_blanko || miss[0].kode}.`);
+        jumpTo(miss[0].kode);
+        return;
+      }
+    }
     go($state.i + 1);
   }
   function jumpTo(kode: string) {

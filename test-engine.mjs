@@ -32,6 +32,10 @@ for (const it of E.IT) {
 const c8 = E.BY['C-08'];
 assert(E.P(c8)[0].multi === true && E.P(c8)[0].opts.length === 5, 'C-08 lima tahap, multi-pilih');
 assert(E.complete(c8, { g0: [1, 2] }), 'C-08 lengkap walau kolom tahun opsional kosong');
+
+const b01 = E.BY['B-01'];
+assert(E.complete(b01, { g1: [0] }), 'B-01 cukup status pencatatan, skala opsional');
+assert(!E.complete(b01, {}), 'B-01 kosong tidak lengkap');
 const b1 = E.BY['B-01'];
 assert(E.P(b1).length === 2 && !E.complete(b1, { g0: [0] }), 'B-01 wajib dua bagian (skala saja tidak cukup)');
 assert(E.expand('Y, rutin') === 'Ya, rutin' && E.expand('BDD') === 'Belum dapat ditentukan' && E.expand('TB') === 'Tidak berlaku', 'expand() singkatan benar (sentence case)');

@@ -64,7 +64,7 @@
    "pertanyaan": "Apakah ada pemeriksaan harian (daily check) sebelum alat dipakai?",
    "pertanyaan_singkat": "Apakah ada pemeriksaan harian (daily check) sebelum alat dipakai?",
    "tipe": "skala",
-   "pilihan_jawaban": "Skala 1–5: …… • ☐ Y, tercatat ☐ Y, tidak tercatat ☐ T",
+   "pilihan_jawaban": "Skala 1–5: …… • Pencatatan: ☐ Y, tercatat ☐ Y, tidak tercatat ☐ T",
    "bukti_diminta": "Log harian terakhir"
   },
   {

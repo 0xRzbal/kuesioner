@@ -61,7 +61,7 @@ export function P(it: Butir): Group[] {
   else if (it.tipe === 'terbuka' || /^Isi terbuka/.test(raw)) gs.push({ k: 'area', h: (raw.match(/\(([^)]*)\)/) || [])[1] || '' });
   else raw.split(' • ').forEach((g) => {
     const i = g.indexOf('☐');
-    if (it.tipe === 'skala' && /^Skala 1–5/.test(g)) gs.push({ k: 'opt', lab: 'Skala 1–5', sc: 1, opts: [1, 2, 3, 4, 5].map((n) => ({ l: String(n), f: [] })) });
+    if (it.tipe === 'skala' && /^Skala 1–5/.test(g)) gs.push({ k: 'opt', lab: it.kode === 'B-01' ? 'Skala 1–5 (opsional)' : 'Skala 1–5', sc: 1, opts: [1, 2, 3, 4, 5].map((n) => ({ l: String(n), f: [] })) });
     else if (i >= 0) gs.push({ k: 'opt', lab: g.slice(0, i).replace(/^Likert SS–STS:\s*/, '').replace(/[:\s]+$/, '').trim(), opts: g.slice(i + 1).split('☐').map(popt) });
     else if (BL.test(g)) { const bi = g.search(BL), ci = g.indexOf(':'); let lab = '', rest = g; if (ci >= 0 && ci < bi) { lab = g.slice(0, ci).trim(); rest = g.slice(ci + 1); } gs.push({ k: 'fld', lab, fl: fields(rest) }); }
   });
@@ -101,7 +101,7 @@ export function fmt(it: Butir, st: AnswerState): string {
 export function complete(it: Butir, st: AnswerState): boolean {
   if (!fmt(it, st)) return false;
   return P(it).every((g, gi) => {
-    if (g.k === 'opt') return (st['g' + gi] || []).length > 0;
+    if (g.k === 'opt') return /opsional/i.test((g as any).lab || '') || (st['g' + gi] || []).length > 0;
     if (g.k === 'fld') {
       if (/opsional/i.test(g.lab)) return true;
       return g.fl.some((f, j) => (st[`f${gi}.${j}`] || '').trim());
@@ -110,7 +110,7 @@ export function complete(it: Butir, st: AnswerState): boolean {
   });
 }
 export function hint(it: Butir): string {
-  if (it.kode === 'B-01') return 'Pertanyaan ini terdiri dari dua bagian — mohon jawab keduanya. Skala 1–5: 1 = tidak pernah, 2 = jarang, 3 = kadang-kadang, 4 = sering, 5 = selalu (setiap hari). Di bawah skala, pilih pula status pencatatannya. Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
+  if (it.kode === 'B-01') return 'Cukup pilih status pencatatannya: Ya tercatat, Ya tidak tercatat, atau Tidak. Skala 1–5 bersifat opsional (1 = tidak pernah … 5 = selalu setiap hari) — kosongkan bila frekuensinya tidak diingat.';
   if (it.kode === 'J-01') return 'Pilih atau ketik kendala dari daftar baku berikut: ketersediaan phantom CBCT; ketersediaan alat ukur/dosimeter; anggaran pengujian; SDM (fisika medik/radiografer terlatih); waktu/jadwal pelayanan yang padat; dukungan manajemen; belum ada SOP/panduan nasional. Bila kendalanya lain, ketik langsung pada kolomnya.';
   const p = P(it);
   const multi = p.some((x: any) => x.k === 'opt' && x.multi);
