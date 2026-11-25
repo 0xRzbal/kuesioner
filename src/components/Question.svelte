@@ -19,7 +19,7 @@
 
 <div class="card">
   <span class="chip">Butir {it.kode_blanko || it.kode}</span>
-  <span class="chip s">Bagian {it.bagian}</span>
+  {#if it.bagian !== '0'}<span class="chip s">Bagian {it.bagian}</span>{/if}
   {#if it.subbagian}<span class="chip s">{it.subbagian}</span>{/if}
   <h2 class="q">{it.pertanyaan}</h2>
   {#if hint(it)}<p class="hint">{hint(it)}</p>{/if}

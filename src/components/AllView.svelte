@@ -13,7 +13,7 @@
 
 {#each SEC as x}
   <div class="card" style="margin-top:14px">
-    <span class="chip">Bagian {x.b}</span>
+    <span class="chip">{x.b === '0' ? 'Identitas' : 'Bagian ' + x.b}</span>
     <h2 style="font-size:20px;margin:0 0 6px">{x.t}</h2>
     {#each x.items as it}
       <div class="all-it">

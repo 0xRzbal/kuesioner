@@ -9,7 +9,7 @@
  "butir": [
   {
    "kode": "0-07",
-   "kode_blanko": "0.7",
+   "kode_blanko": "1",
    "bagian": "0",
    "subbagian": null,
    "judul_bagian": "Bagian 0 — Identitas responden, fasilitas, dan verifikasi alat",
@@ -21,7 +21,7 @@
   },
   {
    "kode": "A-01",
-   "kode_blanko": "A1",
+   "kode_blanko": "2",
    "bagian": "A",
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
@@ -33,7 +33,7 @@
   },
   {
    "kode": "A-02",
-   "kode_blanko": "A2",
+   "kode_blanko": "3",
    "bagian": "A",
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
@@ -45,7 +45,7 @@
   },
   {
    "kode": "A-03",
-   "kode_blanko": "A3",
+   "kode_blanko": "4",
    "bagian": "A",
    "subbagian": null,
    "judul_bagian": "Bagian A — Tata kelola program QA/QC CBCT",
@@ -57,7 +57,7 @@
   },
   {
    "kode": "B-01",
-   "kode_blanko": "B1",
+   "kode_blanko": "5",
    "bagian": "B",
    "subbagian": null,
    "judul_bagian": "Bagian B — Jadwal, frekuensi pengujian, dan pemisahan sumber bukti",
@@ -69,7 +69,7 @@
   },
   {
    "kode": "B-04",
-   "kode_blanko": "B4",
+   "kode_blanko": "6",
    "bagian": "B",
    "subbagian": null,
    "judul_bagian": "Bagian B — Jadwal, frekuensi pengujian, dan pemisahan sumber bukti",
@@ -81,7 +81,7 @@
   },
   {
    "kode": "C-01",
-   "kode_blanko": "C1",
+   "kode_blanko": "7",
    "bagian": "C",
    "subbagian": null,
    "judul_bagian": "Bagian C — Ketersediaan dan riwayat penggunaan phantom.",
@@ -93,7 +93,7 @@
   },
   {
    "kode": "C-07",
-   "kode_blanko": "C7",
+   "kode_blanko": "8",
    "bagian": "C",
    "subbagian": null,
    "judul_bagian": "Bagian C — Ketersediaan dan riwayat penggunaan phantom.",
@@ -105,7 +105,7 @@
   },
   {
    "kode": "C-08",
-   "kode_blanko": "C8",
+   "kode_blanko": "9",
    "bagian": "C",
    "subbagian": null,
    "judul_bagian": "Bagian C — Ketersediaan dan riwayat penggunaan phantom.",
@@ -117,7 +117,7 @@
   },
   {
    "kode": "C-12",
-   "kode_blanko": "C12",
+   "kode_blanko": "10",
    "bagian": "C",
    "subbagian": null,
    "judul_bagian": "Bagian C — Ketersediaan dan riwayat penggunaan phantom.",
@@ -129,7 +129,7 @@
   },
   {
    "kode": "D-01",
-   "kode_blanko": "D1",
+   "kode_blanko": "11",
    "bagian": "D",
    "subbagian": null,
    "judul_bagian": "Bagian D — Kualitas citra CBCT",
@@ -141,7 +141,7 @@
   },
   {
    "kode": "D-04",
-   "kode_blanko": "D4",
+   "kode_blanko": "12",
    "bagian": "D",
    "subbagian": null,
    "judul_bagian": "Bagian D — Kualitas citra CBCT",
@@ -153,7 +153,7 @@
   },
   {
    "kode": "E-01",
-   "kode_blanko": "E1",
+   "kode_blanko": "13",
    "bagian": "E",
    "subbagian": null,
    "judul_bagian": "Bagian E — Keluaran radiasi dan dosimetri khusus CBCT",
@@ -165,7 +165,7 @@
   },
   {
    "kode": "F-05",
-   "kode_blanko": "F5",
+   "kode_blanko": "14",
    "bagian": "F",
    "subbagian": null,
    "judul_bagian": "Bagian F — Kalibrasi alat ukur",
@@ -177,7 +177,7 @@
   },
   {
    "kode": "G-01",
-   "kode_blanko": "G1",
+   "kode_blanko": "15",
    "bagian": "G",
    "subbagian": null,
    "judul_bagian": "Bagian G — Keselamatan, mekanik, dan lingkungan",
@@ -189,7 +189,7 @@
   },
   {
    "kode": "H-06",
-   "kode_blanko": "H6",
+   "kode_blanko": "16",
    "bagian": "H",
    "subbagian": null,
    "judul_bagian": "Bagian H — Penyesuaian protokol pemeriksaan menurut indikasi dan kondisi pasien.",
@@ -201,7 +201,7 @@
   },
   {
    "kode": "I-05",
-   "kode_blanko": "I5",
+   "kode_blanko": "17",
    "bagian": "I",
    "subbagian": null,
    "judul_bagian": "Bagian I — Dokumentasi, penilaian hasil, dan tindak lanjut",
@@ -213,7 +213,7 @@
   },
   {
    "kode": "J-01",
-   "kode_blanko": "J1",
+   "kode_blanko": "18",
    "bagian": "J",
    "subbagian": null,
    "judul_bagian": "Bagian J — Kendala, sumber daya, dan kebutuhan perbaikan",
@@ -225,7 +225,7 @@
   },
   {
    "kode": "J-03",
-   "kode_blanko": "J3",
+   "kode_blanko": "19",
    "bagian": "J",
    "subbagian": null,
    "judul_bagian": "Bagian J — Kendala, sumber daya, dan kebutuhan perbaikan",
@@ -237,7 +237,7 @@
   },
   {
    "kode": "L-01",
-   "kode_blanko": "L1",
+   "kode_blanko": "20",
    "bagian": "L",
    "subbagian": null,
    "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
@@ -249,7 +249,7 @@
   },
   {
    "kode": "L-03",
-   "kode_blanko": "L2",
+   "kode_blanko": "21",
    "bagian": "L",
    "subbagian": null,
    "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
@@ -261,7 +261,7 @@
   },
   {
    "kode": "L-04",
-   "kode_blanko": "L3",
+   "kode_blanko": "22",
    "bagian": "L",
    "subbagian": null,
    "judul_bagian": "Bagian L — Kebutuhan standar nasional dan kesiapan penerapan",
@@ -273,7 +273,7 @@
   },
   {
    "kode": "K-01",
-   "kode_blanko": "K1",
+   "kode_blanko": "23",
    "bagian": "K",
    "subbagian": null,
    "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",
@@ -285,7 +285,7 @@
   },
   {
    "kode": "K-02",
-   "kode_blanko": "K2",
+   "kode_blanko": "24",
    "bagian": "K",
    "subbagian": null,
    "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",

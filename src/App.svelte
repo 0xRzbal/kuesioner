@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import Landing from './components/Landing.svelte';
   import Who from './components/Who.svelte';
-  import SectionIntro from './components/SectionIntro.svelte';
   import Question from './components/Question.svelte';
   import Review from './components/Review.svelte';
   import AllView from './components/AllView.svelte';
@@ -12,11 +11,13 @@
 
   type Step =
     | { t: 'fac' } | { t: 'who' }
-    | { t: 'intro'; s: Section } | { t: 'q'; it: Butir; s: Section }
+    | { t: 'q'; it: Butir; s: Section }
     | { t: 'review' };
   const STEPS: Step[] = [{ t: 'fac' }, { t: 'who' }];
-  SEC.forEach((s) => { STEPS.push({ t: 'intro', s }); s.items.forEach((it) => STEPS.push({ t: 'q', it, s })); });
+  SEC.forEach((s) => { s.items.forEach((it) => STEPS.push({ t: 'q', it, s })); });
   STEPS.push({ t: 'review' });
+  // Indeks langkah pertama dari sebuah bagian — dipakai lompatan dari drawer/pita bagian.
+  const firstStep = (s: Section) => STEPS.findIndex((z) => z.t === 'q' && z.s.b === s.b);
 
   let showAll = false;
   let drawerOpen = false;
@@ -27,8 +28,8 @@
   $: step = STEPS[Math.min($state.i, STEPS.length - 1)];
   $: totalDone = IT.filter((it) => complete(it, $state.s[it.kode] || {})).length;
   $: subtitle =
-    step.t === 'q' || step.t === 'intro'
-      ? `Bagian ${step.s.b} · ${step.t === 'q' ? step.s.items.indexOf(step.it) + 1 + ' dari ' + step.s.items.length : 'pengantar'} · ${totalDone}/${IT.length} terisi`
+    step.t === 'q'
+      ? `Butir ${step.s.items.indexOf(step.it) + 1} dari ${step.s.items.length}${step.s.b !== '0' ? ' · Bagian ' + step.s.b : ''} · ${totalDone}/${IT.length} terisi`
       : step.t === 'review' ? (result && result.ok ? 'Selesai' : 'Tinjau & kirim') : `Langkah ${$state.i + 1} dari 2`;
   const cnt = (s: Section) => s.items.filter((it) => complete(it, $state.s[it.kode] || {})).length;
 
@@ -130,12 +131,12 @@
     <div class="tl" role="button" tabindex="0" title="Kembali ke halaman awal" style="cursor:pointer" on:click={() => go(0)}>QA/QC CBCT Ekstraoral<small>{showAll ? 'Penelaahan seluruh pertanyaan' : subtitle}</small></div>
     <button class="ib" aria-label="Daftar bagian" on:click={() => (drawerOpen = true)}>&#9776;</button>
   </div>
-  {#if !showAll && (step.t === 'q' || step.t === 'intro')}
+  {#if !showAll && step.t === 'q'}
     <div class="sgs" role="navigation" aria-label="Kemajuan per bagian">
       {#each SEC as x}
         {@const n = cnt(x)}
         <button class="sg" class:cur={step.s.b === x.b} class:full={n === x.items.length}
-          title={x.t} aria-label="Bagian {x.b}" on:click={() => go(STEPS.findIndex((z) => z.t === 'intro' && z.s === x))}>
+          title={x.t} aria-label="Bagian {x.b}" on:click={() => go(firstStep(x))}>
           <i style="width:{(n / x.items.length) * 100}%"></i>
         </button>
       {/each}
@@ -151,8 +152,6 @@
     <Landing onShowAll={() => { showAll = true; window.scrollTo({ top: 0 }); }} />
   {:else if step.t === 'who'}
     <Who bind:error />
-  {:else if step.t === 'intro'}
-    <SectionIntro section={step.s} />
   {:else if step.t === 'q'}
     <Question it={step.it} bind:error />
   {:else}
@@ -171,8 +170,6 @@
       {/if}
       {#if step.t === 'fac'}
         <button class="btn p" disabled={!$state.fac || !$state.consent} on:click={next}>Lanjut →</button>
-      {:else if step.t === 'intro'}
-        <button class="btn p" on:click={next}>Mulai Bagian {step.s.b} →</button>
       {:else if step.t === 'review'}
         {#if result && result.ok}
           <button class="btn p" on:click={resetAll}>Isi kuesioner baru</button>
@@ -191,7 +188,7 @@
   <h2 style="margin:4px 8px 12px">Bagian kuesioner</h2>
   {#each SEC as x}
     {@const n = cnt(x)}
-    <button class="di" class:d={n === x.items.length} on:click={() => go(STEPS.findIndex((z) => z.t === 'intro' && z.s === x))}>
+    <button class="di" class:d={n === x.items.length} on:click={() => go(firstStep(x))}>
       <b>{n === x.items.length ? '✓' : x.b}</b><span>{x.t}</span><small>{n}/{x.items.length}</small>
     </button>
   {/each}

@@ -43,7 +43,7 @@
   <p class="hint" style="margin:4px 0 6px">Fasilitas: {$state.fac || '—'} · Responden: {$state.who.nama || '—'}{$state.who.jabatan ? ', ' + $state.who.jabatan : ''}</p>
   {#each SEC as x}
     <div class="rv-sec">
-      <h3>Bagian {x.b} — {x.t}</h3>
+      <h3>{x.b === '0' ? 'Identitas responden' : 'Bagian ' + x.b + ' — ' + x.t}</h3>
       {#each x.items as it}
         {@const a = fmt(it, $state.s[it.kode] || {})}
         {@const e = ($state.ev[it.kode] || '').trim()}
