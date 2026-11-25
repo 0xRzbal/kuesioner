@@ -113,15 +113,15 @@ export function hint(it: Butir): string {
   if (it.kode === 'B-01') return 'Pertanyaan ini terdiri dari dua bagian — mohon jawab keduanya. Skala 1–5: 1 = tidak pernah, 2 = jarang, 3 = kadang-kadang, 4 = sering, 5 = selalu (setiap hari). Di bawah skala, pilih pula status pencatatannya. Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
   if (it.kode === 'J-01') return 'Pilih atau ketik kendala dari daftar baku berikut: ketersediaan phantom CBCT; ketersediaan alat ukur/dosimeter; anggaran pengujian; SDM (fisika medik/radiografer terlatih); waktu/jadwal pelayanan yang padat; dukungan manajemen; belum ada SOP/panduan nasional. Bila kendalanya lain, ketik langsung pada kolomnya.';
   const p = P(it);
+  const multi = p.some((x: any) => x.k === 'opt' && x.multi);
+  const flds = p.filter((x) => x.k === 'fld');
+  const opsional = flds.length > 0 && flds.every((x: any) => /opsional/i.test(x.lab || ''));
   if (p.filter((x) => x.k === 'opt' || x.k === 'fld').length > 1) {
-    const opsional = p.filter((x) => x.k === 'fld').every((x: any) => /opsional/i.test(x.lab || ''));
-    if (opsional) {
-      const multi = p.some((x: any) => x.k === 'opt' && x.multi);
-      return (multi ? 'Boleh pilih lebih dari satu. ' : 'Pilih satu jawaban. ') + 'Kolom bertanda opsional boleh dikosongkan.';
-    }
-    const dasar = 'Pertanyaan ini terdiri dari beberapa bagian — mohon jawab semuanya.';
-    return dasar + ' Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
+    const cara = multi ? 'Boleh pilih lebih dari satu.' : 'Pilih satu jawaban pada tiap bagian.';
+    if (opsional) return cara + ' Kolom bertanda opsional boleh dikosongkan.';
+    if (!flds.length) return cara;
+    return 'Pertanyaan ini terdiri dari beberapa bagian — mohon jawab semuanya. Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
   }
   const g = p.find((x) => x.k === 'opt');
-  return g && p.length === 1 ? ((g as any).multi ? 'Boleh pilih lebih dari satu.' : 'Pilih satu jawaban.') : '';
+  return g && p.length === 1 ? (multi ? 'Boleh pilih lebih dari satu.' : 'Pilih satu jawaban.') : '';
 }
