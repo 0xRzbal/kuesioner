@@ -1,6 +1,6 @@
 {
  "judul": "QA/QC CBCT Ekstraoral",
- "jumlah_butir": 25,
+ "jumlah_butir": 24,
  "catatan_kode": "kode = kode normalisasi untuk kolom spreadsheet (contoh 0-01). kode_blanko = kode persis di dokumen Word (contoh 0.1). 0.1 = 0-01, A1 = A-01, D7 = D-07.",
  "fasilitas": [
   "RSDK",
@@ -294,18 +294,6 @@
    "tipe": "pilihan_ganda",
    "pilihan_jawaban": "☐ Jadwal pengujian berkala ☐ Checklist harian ☐ Protokol uji phantom & penetapan baseline ☐ Formulir mutu citra & log artefak ☐ Formulir repeat/reject ☐ Alur tindak lanjut & stop-use",
    "bukti_diminta": "—"
-  },
-  {
-   "kode": "K-04",
-   "kode_blanko": "K4",
-   "bagian": "K",
-   "subbagian": null,
-   "judul_bagian": "Bagian K — Validasi responden dan kesediaan menerapkan hasil penelitian",
-   "pertanyaan": "Pernyataan kebenaran: jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.",
-   "pertanyaan_singkat": "Pernyataan kebenaran: jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.",
-   "tipe": "isian",
-   "pilihan_jawaban": "Nama lengkap (sebagai tanda tangan digital): ………………………… • Jabatan: ………… • Tanggal: …………",
-   "bukti_diminta": "★ Formulir bertanda tangan disimpan sebagai bukti instrumen"
   }
  ]
 }

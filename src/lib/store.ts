@@ -7,10 +7,9 @@ export interface AppState {
   who: { nama: string; jabatan: string; kontak: string; alat: string; tahunAlat: string };
   s: Record<string, Record<string, any>>;
   ev: Record<string, string>;
-  k4agree: boolean;
   consent: boolean;
 }
-export const emptyState = (): AppState => ({ i: 0, fac: '', who: { nama: '', jabatan: '', kontak: '', alat: '', tahunAlat: '' }, s: {}, ev: {}, k4agree: false, consent: false });
+export const emptyState = (): AppState => ({ i: 0, fac: '', who: { nama: '', jabatan: '', kontak: '', alat: '', tahunAlat: '' }, s: {}, ev: {}, consent: false });
 
 function load(): AppState {
   try {

@@ -49,7 +49,7 @@
       3) Jawab butir satu per satu per bagian. Jawaban tersimpan otomatis di perangkat ini dan dapat dilanjutkan kemudian.<br>
       4) Bila sebuah butir belum dapat dijawab saat ini, tekan “Lewati” — butir itu ditandai belum terjawab dan tetap harus dilengkapi sebelum jawaban dapat dikirim.<br>
       5) Pada kolom bukti, tuliskan nomor/judul dokumen atau keterangannya; isi “-” bila bukti memang tidak tersedia.<br>
-      6) Di akhir, periksa ringkasan pada halaman Tinjau &amp; Kirim, lengkapi pernyataan kebenaran (butir K4), lalu tekan Kirim Jawaban.
+      6) Di akhir, periksa ringkasan pada halaman Tinjau &amp; Kirim, lalu tekan Kirim Jawaban.
     </p>
   </details>
 

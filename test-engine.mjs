@@ -8,7 +8,7 @@ const E = await import('/tmp/engine-v2.mjs');
 let fails = 0;
 const assert = (c, m) => { console.log((c ? 'PASS' : 'FAIL') + ' ' + m); if (!c) fails++; };
 
-assert(E.IT.length === 25, '25 butir termuat');
+assert(E.IT.length === 24, '24 butir termuat');
 assert(E.SEC.length === 13, '13 bagian terbentuk');
 
 // Bangun jawaban penuh sintetis untuk setiap butir: pilih opsi pertama tiap grup, isi semua field.

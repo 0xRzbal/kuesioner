@@ -120,7 +120,7 @@ export function hint(it: Butir): string {
       return (multi ? 'Boleh pilih lebih dari satu. ' : 'Pilih satu jawaban. ') + 'Kolom bertanda opsional boleh dikosongkan.';
     }
     const dasar = 'Pertanyaan ini terdiri dari beberapa bagian — mohon jawab semuanya.';
-    return it.kode === 'K-04' ? dasar : dasar + ' Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
+    return dasar + ' Bila belum dapat dijawab saat ini, tekan “Lewati” dan butir ini akan ditandai belum terjawab.';
   }
   const g = p.find((x) => x.k === 'opt');
   return g && p.length === 1 ? ((g as any).multi ? 'Boleh pilih lebih dari satu.' : 'Pilih satu jawaban.') : '';

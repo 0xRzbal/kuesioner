@@ -52,7 +52,6 @@
       if (!complete(step.it, $state.s[step.it.kode] || {})) {
         error = 'Pertanyaan ini belum dijawab lengkap. Mohon isi terlebih dahulu, atau tekan “Lewati” bila memang belum dapat dijawab saat ini.'; return;
       }
-      if (step.it.kode === 'K-04' && !$state.k4agree) { error = 'Mohon centang pernyataan kebenaran pada butir ini terlebih dahulu.'; return; }
     }
     go($state.i + 1);
   }
@@ -84,7 +83,7 @@
   async function kirim() {
     if (result && result.ok) { toast('Jawaban sudah terkirim dari perangkat ini.'); return; }
     if (!$state.fac || !$state.who.nama.trim()) { go($state.fac ? 1 : 0); return; }
-    const miss = IT.filter((it) => !complete(it, $state.s[it.kode] || {}) || (it.kode === 'K-04' && !$state.k4agree));
+    const miss = IT.filter((it) => !complete(it, $state.s[it.kode] || {}));
     if (miss.length) {
       toast(`Masih ada ${miss.length} pertanyaan yang belum lengkap — Anda diarahkan ke pertanyaan pertama yang belum lengkap.`);
       jumpTo(miss[0].kode); return;
@@ -167,7 +166,7 @@
       <button class="btn bk" aria-label="Kembali" on:click={() => (showAll = false)}>&#8249;</button>
     {:else}
       <button class="btn bk" aria-label="Kembali" disabled={$state.i === 0} on:click={() => go($state.i - 1)}>&#8249;</button>
-      {#if step.t === 'q' && step.it.kode !== 'K-04' && !complete(step.it, $state.s[step.it.kode] || {})}
+      {#if step.t === 'q' && !complete(step.it, $state.s[step.it.kode] || {})}
         <button class="btn g" on:click={() => go($state.i + 1)}>Lewati</button>
       {/if}
       {#if step.t === 'fac'}

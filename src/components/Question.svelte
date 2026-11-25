@@ -36,7 +36,7 @@
           <label class="fl">
             <span>{f.l || g.lab || 'Isi'}</span>
             <span class="iw">
-              <input class="in" type={it.kode === 'K-04' && g.lab === 'Tanggal' ? 'date' : 'text'} list={it.kode === 'J-01' && gi === 0 ? 'kendala-j1' : undefined} value={ans[`f${gi}.${j}`] || ''} placeholder={fldPh(g, f)} on:input={(e) => setField(it.kode, `f${gi}.${j}`, e.currentTarget.value)}>
+              <input class="in" type="text" list={it.kode === 'J-01' && gi === 0 ? 'kendala-j1' : undefined} value={ans[`f${gi}.${j}`] || ''} placeholder={fldPh(g, f)} on:input={(e) => setField(it.kode, `f${gi}.${j}`, e.currentTarget.value)}>
               {#if f.u}<i>{f.u}</i>{/if}
             </span>
           </label>
@@ -79,13 +79,6 @@
       <p class="hint" style="margin:8px 0">Bukti ditunjukkan kepada peneliti saat pengisian. Tuliskan nomor/judul dokumen atau keterangan buktinya di sini; isi “-” bila bukti memang tidak tersedia.</p>
       <input class="in" value={ev} placeholder="Nomor dokumen / keterangan bukti (isi '-' bila tidak tersedia)" on:input={(e) => setEvidence(it.kode, e.currentTarget.value)}>
     </details>
-  {/if}
-
-  {#if it.kode === 'K-04'}
-    <label class="consent">
-      <input type="checkbox" bind:checked={$state.k4agree}>
-      <span>Saya menyatakan bahwa jawaban pada kuesioner ini diisi sesuai kondisi sebenarnya dan bukti yang ditunjukkan kepada peneliti.</span>
-    </label>
   {/if}
 
   {#if error}<div class="er">{error}</div>{/if}
