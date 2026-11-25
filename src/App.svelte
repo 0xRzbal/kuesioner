@@ -40,7 +40,7 @@
       target = 1;
     }
     $state.i = target;
-    error = ''; drawerOpen = false;
+    error = ''; drawerOpen = false; showAll = false;
     window.scrollTo({ top: 0 });
     if (!fromPop) { try { history.pushState({ i: $state.i }, ''); } catch { /* abaikan */ } }
   }
