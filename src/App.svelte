@@ -8,6 +8,7 @@
   import { IT, SEC, complete, fmt, type Butir, type Section } from './lib/engine';
   import { state, toastMsg, toast, emptyState } from './lib/store';
   import { sendToSheets, retryPending, SUBMITTED_KEY, DRAFT_KEY, type Payload, type SendResult } from './lib/sheets';
+  import { wibStamp, wibPretty } from './lib/waktu';
 
   type Step =
     | { t: 'fac' } | { t: 'who' }
@@ -87,7 +88,7 @@
     const alatInfo = [$state.who.alat.trim(), $state.who.tahunAlat.trim() ? 'pemasangan ' + $state.who.tahunAlat.trim() : '' ].filter(Boolean).join(', ');
     const kontak = [$state.who.kontak.trim(), alatInfo ? 'Unit CBCT: ' + alatInfo : ''].filter(Boolean).join(' | ');
     return {
-      facility: $state.fac, timestamp: new Date().toISOString(),
+      facility: $state.fac, timestamp: wibStamp(),
       respondent: { nama: $state.who.nama.trim(), jabatan: $state.who.jabatan.trim(), kontak },
       answers, evidence, status: 'Terkirim'
     };
@@ -123,7 +124,7 @@
     try {
       const sb = JSON.parse(localStorage.getItem(SUBMITTED_KEY) || 'null');
       if (sb && sb.at) {
-        result = { ok: true, status: 'Terkirim ke Sheets', pesan: `Jawaban dari perangkat ini sudah pernah dikirim pada ${new Date(sb.at).toLocaleString('id-ID')}. Pengiriman ulang dikunci untuk mencegah data ganda. Gunakan tombol “Isi kuesioner baru” bila memang perlu mengisi ulang dari awal.` };
+        result = { ok: true, status: 'Terkirim ke Sheets', pesan: `Jawaban dari perangkat ini sudah pernah dikirim pada ${sb.atWib || wibPretty(sb.at)}. Pengiriman ulang dikunci untuk mencegah data ganda. Gunakan tombol “Isi kuesioner baru” bila memang perlu mengisi ulang dari awal.` };
         $state.i = STEPS.length - 1;
       } else if ($state.i > 1) toast('Draf sebelumnya dilanjutkan.');
       history.replaceState({ i: $state.i }, '');

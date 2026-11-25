@@ -5,6 +5,8 @@
  * jaringan. Verifikasi akhir tetap: baris baru muncul di sheet hasil.
  * Pengiriman yang gagal disimpan sebagai antrean lokal dan dapat dikirim ulang.
  */
+import { wibStamp } from './waktu';
+
 export const SHEETS_WEB_APP_URL =
   'https://script.google.com/macros/s/AKfycbweOo_N1lcLnkqH7pWenvfm4iwVxtQn6U3HTgGNPvDlcF5ZMJvguDexNaDBFsl1SwBMeQ/exec';
 
@@ -25,7 +27,7 @@ export function pendingCount(): number {
 function queuePending(data: Payload) {
   try {
     const p = JSON.parse(localStorage.getItem(PENDING_KEY) || '[]');
-    p.push({ disimpan_pada: new Date().toISOString(), data });
+    p.push({ disimpan_pada: wibStamp(), data });
     localStorage.setItem(PENDING_KEY, JSON.stringify(p));
   } catch { /* penyimpanan penuh — abaikan */ }
 }
@@ -37,7 +39,7 @@ export async function sendToSheets(data: Payload): Promise<SendResult> {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(data)
     });
-    try { localStorage.setItem(SUBMITTED_KEY, JSON.stringify({ at: new Date().toISOString(), fac: data.facility, nama: data.respondent.nama })); } catch { /* abaikan */ }
+    try { localStorage.setItem(SUBMITTED_KEY, JSON.stringify({ at: new Date().toISOString(), atWib: wibStamp(), fac: data.facility, nama: data.respondent.nama })); } catch { /* abaikan */ }
     return { ok: true, status: 'Terkirim ke Sheets', pesan: 'Jawaban sudah terkirim kepada peneliti. Terima kasih atas partisipasi Bapak/Ibu.' };
   } catch (e) {
     queuePending(data);
