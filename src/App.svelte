@@ -81,6 +81,15 @@
       answers, evidence, status: 'Terkirim'
     };
   }
+  // Tombol "Lengkapi N butir": arahkan langsung ke butir pertama yang belum lengkap.
+  function lengkapi() {
+    const miss = IT.filter((it) => !complete(it, $state.s[it.kode] || {}));
+    if (!miss.length) { kirim(); return; }
+    const idx = STEPS.findIndex((x) => x.t === 'q' && x.it.kode === miss[0].kode);
+    toast(`Masih ada ${miss.length} butir belum lengkap — diarahkan ke butir ${miss[0].kode_blanko || ''}: ${miss[0].pertanyaan_singkat.slice(0, 60)}…`);
+    if (idx >= 0) go(idx);
+  }
+
   async function kirim() {
     if (result && result.ok) { toast('Jawaban sudah terkirim dari perangkat ini.'); return; }
     if (!$state.fac || !$state.who.nama.trim()) { go($state.fac ? 1 : 0); return; }
@@ -174,7 +183,7 @@
         {#if result && result.ok}
           <button class="btn p" on:click={resetAll}>Isi kuesioner baru</button>
         {:else}
-          <button class="btn p" id="send" disabled={sending || totalDone < IT.length} on:click={kirim}>{sending ? 'Mengirim…' : (totalDone < IT.length ? `Lengkapi ${IT.length - totalDone} butir` : 'Kirim Jawaban')}</button>
+          <button class="btn p" id="send" disabled={sending} on:click={totalDone < IT.length ? lengkapi : kirim}>{sending ? 'Mengirim…' : (totalDone < IT.length ? `Lengkapi ${IT.length - totalDone} butir` : 'Kirim Jawaban')}</button>
         {/if}
       {:else}
         <button class="btn p" on:click={next}>Lanjut →</button>
