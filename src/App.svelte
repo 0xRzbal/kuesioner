@@ -196,7 +196,6 @@
     </button>
   {/each}
   <button class="di" on:click={() => go(STEPS.length - 1)}><b>&#9654;</b><span>Tinjau &amp; kirim</span></button>
-  <button class="di" on:click={() => { showAll = true; drawerOpen = false; window.scrollTo({ top: 0 }); }}><b>&#8801;</b><span>Baca semua pertanyaan</span></button>
 </aside>
 
 <div class="toast" class:on={!!$toastMsg}>{$toastMsg}</div>
