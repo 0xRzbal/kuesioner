@@ -23,3 +23,5 @@ systemctl restart kuesioner.service
 
 `kuesioner-v6-deploy-merge-25butir.zip` is the current live bundle. It adds the merged UX layer on top of v5: explicit consent checkbox on the landing page, identity gate (drawer/progress/review locked until the respondent name is filled), optional unit brand/model and installation year in the respondent block, reset/draft-delete buttons, J1 datalist of standard constraints, a real date input for K4 (no skip), evidence hint for empty answers, numbering-gap note in Baca semua, and consolidated item wording. Instrument stays 25 items / 13 sections. Same deploy steps with the v6 filename.
 
+`kuesioner-v7-deploy-24butir.zip` is the current live bundle: public title shortened to "QA/QC CBCT Ekstraoral", sections C and H retitled, E1 reduced to a report-availability question, and item K4 removed (its statement of truth duplicated the identity page) — 24 items / 13 sections. Same deploy steps with the v7 filename.
+
